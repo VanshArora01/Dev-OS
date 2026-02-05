@@ -1,6 +1,27 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Terminal, Layers, GitBranch, Zap, Code, Activity } from 'lucide-react'
+import { ArrowRight, Terminal, Layers, GitBranch, Zap, Code, Activity, Github, Database, Cloud, Globe, LayoutDashboard, FolderKanban, Wrench } from 'lucide-react'
+import { Particles } from '@/components/particles'
+import { ClickSpark } from '@/components/click-spark'
+import { LogoLoop } from '@/components/logo-loop'
+import { ScrollStack, ScrollStackItem } from '@/components/scroll-stack'
+import { MagicBento, MagicBentoItem } from '@/components/magic-bento'
+import { Dock } from '@/components/dock'
+
+const techLogos = [
+  { name: 'GitHub', icon: <Github className="h-8 w-8 text-muted-foreground" /> },
+  { name: 'Database', icon: <Database className="h-8 w-8 text-muted-foreground" /> },
+  { name: 'Cloud', icon: <Cloud className="h-8 w-8 text-muted-foreground" /> },
+  { name: 'Code', icon: <Code className="h-8 w-8 text-muted-foreground" /> },
+  { name: 'Globe', icon: <Globe className="h-8 w-8 text-muted-foreground" /> },
+]
+
+const dockItems = [
+  { id: '1', icon: <LayoutDashboard className="h-5 w-5" />, label: 'Dashboard' },
+  { id: '2', icon: <FolderKanban className="h-5 w-5" />, label: 'Projects' },
+  { id: '3', icon: <Zap className="h-5 w-5" />, label: 'API' },
+  { id: '4', icon: <Wrench className="h-5 w-5" />, label: 'Tools' },
+]
 
 export default function LandingPage() {
   return (
@@ -23,12 +44,21 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Hero Section with Particles */}
       <section className="relative overflow-hidden pt-32 pb-20">
-        {/* Background Effects */}
+        {/* Particles Background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-primary/10 blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-purple-500/10 blur-[120px]" />
+          <Particles
+            particleColors={['#8b5cf6', '#6366f1']}
+            particleCount={150}
+            particleSpread={10}
+            speed={0.15}
+            particleBaseSize={100}
+            moveParticlesOnHover
+            alphaParticles={false}
+            disableRotation={false}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
         </div>
         
         <div className="container relative mx-auto px-6">
@@ -41,36 +71,36 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Headline */}
-            <h1 className="mb-6 text-center text-6xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl">
-              <span className="gradient-text">Professional workflows</span>
-              <br />
-              <span className="text-foreground/90">for focused development</span>
-            </h1>
+            {/* Headline + CTA with ClickSpark */}
+            <ClickSpark sparkColor="#8b5cf6" sparkSize={8} sparkRadius={20} sparkCount={10} duration={500}>
+              <div className="mb-10">
+                <h1 className="mb-6 text-center text-6xl font-bold leading-[1.1] tracking-tight md:text-7xl lg:text-8xl">
+                  <span className="gradient-text">Professional workflows</span>
+                  <br />
+                  <span className="text-foreground/90">for focused development</span>
+                </h1>
 
-            {/* Subtitle */}
-            <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-muted-foreground md:text-xl">
-              A unified workspace designed for developers to manage projects, tools, and APIs in one place. Built for execution continuity.
-            </p>
+                <p className="mx-auto mb-10 max-w-2xl text-center text-lg text-muted-foreground md:text-xl">
+                  A unified workspace designed for developers to manage projects, tools, and APIs in one place. Built for execution continuity.
+                </p>
 
-            {/* CTA Buttons */}
-            <div className="mb-16 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-              <Button size="lg" className="glow-effect-strong shadow-lg" asChild>
-                <Link href="/sign-up">
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button size="lg" variant="outline" className="border-border/40 bg-card/40 backdrop-blur" asChild>
-                <Link href="/sign-in">Login</Link>
-              </Button>
-            </div>
+                <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                  <Button size="lg" className="glow-effect-strong shadow-lg" asChild>
+                    <Link href="/sign-up">
+                      Get Started
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Link>
+                  </Button>
+                  <Button size="lg" variant="outline" className="border-border/40 bg-card/40 backdrop-blur" asChild>
+                    <Link href="/sign-in">Login</Link>
+                  </Button>
+                </div>
+              </div>
+            </ClickSpark>
 
-            {/* Floating Dashboard Preview */}
+            {/* Floating Dashboard Preview with Dock */}
             <div className="relative">
-              {/* Main Panel */}
               <div className="floating-panel overflow-hidden rounded-2xl border border-border/40 p-8">
-                {/* Browser Chrome */}
                 <div className="mb-6 flex items-center gap-2">
                   <div className="h-3 w-3 rounded-full bg-red-500/60" />
                   <div className="h-3 w-3 rounded-full bg-yellow-500/60" />
@@ -78,9 +108,7 @@ export default function LandingPage() {
                   <div className="ml-4 text-xs text-muted-foreground">Dashboard</div>
                 </div>
 
-                {/* Content */}
                 <div className="space-y-6">
-                  {/* Stats Row */}
                   <div className="grid gap-4 md:grid-cols-3">
                     <div className="rounded-xl border border-border/30 bg-background/50 p-5 backdrop-blur-sm">
                       <div className="mb-2 text-xs text-muted-foreground">Active Projects</div>
@@ -99,7 +127,6 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  {/* Chart */}
                   <div className="rounded-xl border border-border/30 bg-background/50 p-6 backdrop-blur-sm">
                     <div className="mb-4 text-sm font-medium">Working Consistency</div>
                     <div className="flex h-32 items-end justify-between gap-2">
@@ -122,22 +149,10 @@ export default function LandingPage() {
                       <span>Sun</span>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Floating Side Panels */}
-              <div className="absolute -right-4 top-20 hidden w-64 lg:block">
-                <div className="floating-panel space-y-3 rounded-xl border border-border/40 p-4">
-                  <div className="text-xs font-medium text-muted-foreground">Projects at Risk</div>
-                  <div className="space-y-2">
-                    <div className="rounded-lg border border-border/20 bg-background/40 p-3">
-                      <div className="text-xs font-medium">Personal Site</div>
-                      <div className="mt-1 text-xs text-muted-foreground/70">No updates in 5 days</div>
-                    </div>
-                    <div className="rounded-lg border border-border/20 bg-background/40 p-3">
-                      <div className="text-xs font-medium">Client Dashboard</div>
-                      <div className="mt-1 text-xs text-muted-foreground/70">Deadline approaching</div>
-                    </div>
+                  {/* Dock Preview */}
+                  <div className="flex justify-center pt-4">
+                    <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
                   </div>
                 </div>
               </div>
@@ -146,7 +161,45 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Features Section */}
+      {/* Logo Loop */}
+      <LogoLoop
+        logos={techLogos}
+        speed={30}
+        direction="left"
+        logoHeight={60}
+        gap={60}
+        hoverSpeed={0}
+        scaleOnHover
+        fadeOut
+        fadeOutColor="#ffffff"
+        ariaLabel="Technology ecosystem"
+      />
+
+      {/* Core Value Story with ScrollStack */}
+      <ScrollStack>
+        <ScrollStackItem>
+          <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Execution Continuity</h2>
+          <p className="text-lg text-muted-foreground">
+            Pick up exactly where you left off. DevOS remembers your context across sessions, so you never lose momentum.
+          </p>
+        </ScrollStackItem>
+
+        <ScrollStackItem>
+          <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Context Switching Solved</h2>
+          <p className="text-lg text-muted-foreground">
+            Jump between personal projects, client work, and company tasks without losing focus. Your work stays connected.
+          </p>
+        </ScrollStackItem>
+
+        <ScrollStackItem>
+          <h2 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl">One Developer Workspace</h2>
+          <p className="text-lg text-muted-foreground">
+            Projects, API testing, developer tools, and workflow management—all in one place. No more switching apps.
+          </p>
+        </ScrollStackItem>
+      </ScrollStack>
+
+      {/* Features with MagicBento */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="mx-auto mb-16 max-w-2xl text-center">
@@ -154,41 +207,47 @@ export default function LandingPage() {
               Built for the way developers work
             </h2>
             <p className="text-lg text-muted-foreground">
-              Track projects, test APIs, and manage your workflow in one unified workspace
+              Everything you need to stay productive and focused
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            <div className="floating-panel group rounded-xl border border-border/40 p-6">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Layers className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold">Track all your projects</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Organize personal, freelance, and company projects with clear context separation
-              </p>
-            </div>
+          <MagicBento
+            textAutoHide={true}
+            enableStars
+            enableSpotlight
+            enableBorderGlow={true}
+            enableTilt={false}
+            enableMagnetism={false}
+            clickEffect
+            spotlightRadius={400}
+            particleCount={12}
+            glowColor="132, 0, 255"
+            disableAnimations={false}
+          >
+            <MagicBentoItem
+              title="Track all your projects"
+              description="Organize personal, freelance, and company projects with clear context separation and seamless switching."
+              icon={<Layers className="h-6 w-6 text-primary" />}
+            >
+              <div />
+            </MagicBentoItem>
 
-            <div className="floating-panel group rounded-xl border border-border/40 p-6">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <Zap className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold">Use built-in tools</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Test APIs and use developer utilities with one click, no context switching required
-              </p>
-            </div>
+            <MagicBentoItem
+              title="Use built-in tools"
+              description="Test APIs and use developer utilities with one click. No context switching, no external tools required."
+              icon={<Zap className="h-6 w-6 text-primary" />}
+            >
+              <div />
+            </MagicBentoItem>
 
-            <div className="floating-panel group rounded-xl border border-border/40 p-6">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                <GitBranch className="h-6 w-6 text-primary" />
-              </div>
-              <h3 className="mb-2 text-lg font-semibold">Switch context easily</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Resume where you left off across sessions with automatic session tracking
-              </p>
-            </div>
-          </div>
+            <MagicBentoItem
+              title="Switch context easily"
+              description="Resume where you left off across sessions with automatic session tracking and project state management."
+              icon={<GitBranch className="h-6 w-6 text-primary" />}
+            >
+              <div />
+            </MagicBentoItem>
+          </MagicBento>
         </div>
       </section>
 
