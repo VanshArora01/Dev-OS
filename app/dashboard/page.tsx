@@ -18,7 +18,7 @@ export default function DashboardPage() {
           </div>
           <Link
             href="/dashboard/projects/1"
-            className="group block rounded-lg border border-border/40 bg-card/50 p-6 transition-colors hover:border-border hover:bg-card"
+            className="floating-panel group block rounded-xl border border-border/30 p-6"
           >
             <div className="flex items-start justify-between">
               <div className="space-y-1">
@@ -41,7 +41,7 @@ export default function DashboardPage() {
               <div className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                 Working Consistency
               </div>
-              <div className="rounded-lg border border-border/40 bg-card/30 p-6">
+              <div className="floating-panel rounded-xl border border-border/30 p-6">
                 <div className="flex h-32 items-end justify-between gap-3">
                   {[
                     { day: 'Mon', value: 65 },
@@ -55,7 +55,7 @@ export default function DashboardPage() {
                     <div key={item.day} className="flex flex-1 flex-col items-center gap-2">
                       <div className="relative w-full">
                         <div
-                          className="w-full rounded-sm bg-foreground/80 transition-opacity hover:opacity-70"
+                          className="w-full rounded-sm bg-gradient-to-t from-primary/70 to-primary transition-all hover:from-primary/90 hover:to-primary"
                           style={{ height: `${item.value}px` }}
                         />
                       </div>
@@ -71,15 +71,15 @@ export default function DashboardPage() {
                 Project Distribution
               </div>
               <div className="grid gap-4 sm:grid-cols-3">
-                <div className="space-y-1 rounded-lg border border-border/40 bg-card/30 p-4">
+                <div className="floating-panel space-y-1 rounded-xl border border-border/30 p-4">
                   <div className="text-2xl font-semibold tabular-nums">8</div>
                   <div className="text-xs text-muted-foreground">Personal</div>
                 </div>
-                <div className="space-y-1 rounded-lg border border-border/40 bg-card/30 p-4">
+                <div className="floating-panel space-y-1 rounded-xl border border-border/30 p-4">
                   <div className="text-2xl font-semibold tabular-nums">5</div>
                   <div className="text-xs text-muted-foreground">Freelance</div>
                 </div>
-                <div className="space-y-1 rounded-lg border border-border/40 bg-card/30 p-4">
+                <div className="floating-panel space-y-1 rounded-xl border border-border/30 p-4">
                   <div className="text-2xl font-semibold tabular-nums">3</div>
                   <div className="text-xs text-muted-foreground">Company</div>
                 </div>
@@ -94,11 +94,11 @@ export default function DashboardPage() {
                 Needs Attention
               </div>
               <div className="space-y-3">
-                <div className="rounded-lg border border-border/40 bg-card/30 p-4">
+                <div className="floating-panel rounded-xl border border-border/30 p-4">
                   <div className="text-sm font-medium">Client Dashboard</div>
                   <div className="mt-1 text-xs text-muted-foreground">No updates in 5 days</div>
                 </div>
-                <div className="rounded-lg border border-border/40 bg-card/30 p-4">
+                <div className="floating-panel rounded-xl border border-border/30 p-4">
                   <div className="text-sm font-medium">Mobile App Refactor</div>
                   <div className="mt-1 text-xs text-muted-foreground">Deadline approaching</div>
                 </div>

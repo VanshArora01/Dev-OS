@@ -30,11 +30,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen">
       {/* Sidebar */}
-      <div className="hidden w-56 flex-col border-r border-border/40 md:flex">
-        <div className="flex h-14 items-center gap-2 border-b border-border/40 px-5">
-          <Terminal className="h-4 w-4" />
+      <div className="hidden w-56 flex-col border-r border-border/20 bg-card/40 backdrop-blur-xl md:flex">
+        <div className="flex h-14 items-center gap-2 border-b border-border/20 px-5">
+          <Terminal className="h-4 w-4 text-primary" />
           <span className="text-sm font-semibold tracking-tight">DevOS</span>
         </div>
         <ScrollArea className="flex-1 px-3 py-6">
@@ -46,9 +46,9 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
+                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all',
                     isActive
-                      ? 'bg-secondary text-foreground'
+                      ? 'bg-primary/10 text-foreground shadow-sm'
                       : 'text-muted-foreground hover:bg-secondary/50 hover:text-foreground'
                   )}
                 >
@@ -59,8 +59,8 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             })}
           </nav>
         </ScrollArea>
-        <div className="border-t border-border/40 p-3">
-          <div className="flex items-center gap-3 rounded-md px-3 py-2">
+        <div className="border-t border-border/20 p-3">
+          <div className="flex items-center gap-3 rounded-lg px-3 py-2">
             <UserButton 
               afterSignOutUrl="/"
               appearance={{
