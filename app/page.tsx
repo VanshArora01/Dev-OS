@@ -1,27 +1,10 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Terminal, Layers, GitBranch, Zap, Code, Activity, Github, Database, Cloud, Globe, LayoutDashboard, FolderKanban, Wrench } from 'lucide-react'
+import { ArrowRight, Terminal, Layers, GitBranch, Zap, Code, Activity } from 'lucide-react'
 import { Particles } from '@/components/particles'
 import { ClickSpark } from '@/components/click-spark'
-import { LogoLoop } from '@/components/logo-loop'
 import { ScrollStack, ScrollStackItem } from '@/components/scroll-stack'
 import { MagicBento, MagicBentoItem } from '@/components/magic-bento'
-import { Dock } from '@/components/dock'
-
-const techLogos = [
-  { name: 'GitHub', icon: <Github className="h-8 w-8 text-muted-foreground" /> },
-  { name: 'Database', icon: <Database className="h-8 w-8 text-muted-foreground" /> },
-  { name: 'Cloud', icon: <Cloud className="h-8 w-8 text-muted-foreground" /> },
-  { name: 'Code', icon: <Code className="h-8 w-8 text-muted-foreground" /> },
-  { name: 'Globe', icon: <Globe className="h-8 w-8 text-muted-foreground" /> },
-]
-
-const dockItems = [
-  { id: '1', icon: <LayoutDashboard className="h-5 w-5" />, label: 'Dashboard' },
-  { id: '2', icon: <FolderKanban className="h-5 w-5" />, label: 'Projects' },
-  { id: '3', icon: <Zap className="h-5 w-5" />, label: 'API' },
-  { id: '4', icon: <Wrench className="h-5 w-5" />, label: 'Tools' },
-]
 
 export default function LandingPage() {
   return (
@@ -47,18 +30,18 @@ export default function LandingPage() {
       {/* Hero Section with Particles */}
       <section className="relative overflow-hidden pt-32 pb-20">
         {/* Particles Background */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 -z-10">
           <Particles
             particleColors={['#8b5cf6', '#6366f1']}
-            particleCount={150}
+            particleCount={80}
             particleSpread={10}
-            speed={0.15}
+            speed={0.1}
             particleBaseSize={100}
             moveParticlesOnHover
             alphaParticles={false}
             disableRotation={false}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/90 to-background" />
         </div>
         
         <div className="container relative mx-auto px-6">
@@ -149,31 +132,12 @@ export default function LandingPage() {
                       <span>Sun</span>
                     </div>
                   </div>
-
-                  {/* Dock Preview */}
-                  <div className="flex justify-center pt-4">
-                    <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Logo Loop */}
-      <LogoLoop
-        logos={techLogos}
-        speed={30}
-        direction="left"
-        logoHeight={60}
-        gap={60}
-        hoverSpeed={0}
-        scaleOnHover
-        fadeOut
-        fadeOutColor="#ffffff"
-        ariaLabel="Technology ecosystem"
-      />
 
       {/* Core Value Story with ScrollStack */}
       <ScrollStack>

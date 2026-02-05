@@ -16,6 +16,7 @@ import {
   Settings,
   Terminal
 } from 'lucide-react'
+import { Dock } from '@/components/dock'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -24,6 +25,13 @@ const navigation = [
   { name: 'API Tester', href: '/dashboard/api-tester', icon: Zap },
   { name: 'Quick Tools', href: '/dashboard/quick-tools', icon: Wrench },
   { name: 'Settings', href: '/dashboard/settings', icon: Settings },
+]
+
+const dockItems = [
+  { id: '1', icon: <LayoutDashboard className="h-5 w-5" />, label: 'Dashboard', href: '/dashboard' },
+  { id: '2', icon: <FolderKanban className="h-5 w-5" />, label: 'Projects', href: '/dashboard/projects' },
+  { id: '3', icon: <Zap className="h-5 w-5" />, label: 'API', href: '/dashboard/api-tester' },
+  { id: '4', icon: <Wrench className="h-5 w-5" />, label: 'Tools', href: '/dashboard/quick-tools' },
 ]
 
 export function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -82,6 +90,11 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         <main className="flex-1 overflow-auto">
           <div className="mx-auto max-w-7xl p-8">{children}</div>
         </main>
+
+        {/* Dock Navigation */}
+        <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2">
+          <Dock items={dockItems} panelHeight={68} baseItemSize={50} magnification={70} />
+        </div>
       </div>
     </div>
   )
