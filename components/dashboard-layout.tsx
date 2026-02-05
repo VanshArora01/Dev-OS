@@ -4,6 +4,7 @@ import React from "react"
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { UserButton } from '@clerk/nextjs'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -15,8 +16,7 @@ import {
   Wrench,
   Settings,
   Search,
-  Bell,
-  User
+  Bell
 } from 'lucide-react'
 
 const navigation = [
@@ -82,9 +82,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
             <Button variant="ghost" size="icon">
               <Bell className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
+            <UserButton afterSignOutUrl="/" />
           </div>
         </header>
 
