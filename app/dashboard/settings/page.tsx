@@ -1,4 +1,3 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
@@ -7,101 +6,97 @@ import { Separator } from '@/components/ui/separator'
 
 export default function SettingsPage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Settings</h1>
-        <p className="text-muted-foreground">Manage your account settings and preferences</p>
+    <div className="mx-auto max-w-2xl space-y-8">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold tracking-tight">Settings</h1>
+        <p className="text-sm text-muted-foreground">Manage your preferences</p>
       </div>
 
-      <div className="grid gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Profile Information</CardTitle>
-            <CardDescription>Your account details from Clerk</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+      <div className="space-y-8">
+        <div className="space-y-4">
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Profile
+          </div>
+          <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
             <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" defaultValue="Developer" disabled />
+              <Label htmlFor="name" className="text-sm">Name</Label>
+              <Input id="name" defaultValue="Developer" disabled className="bg-background/50" />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input id="email" type="email" defaultValue="developer@example.com" disabled />
+              <Label htmlFor="email" className="text-sm">Email</Label>
+              <Input id="email" type="email" defaultValue="developer@example.com" disabled className="bg-background/50" />
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               Profile information is managed through your authentication provider.
             </p>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Appearance</CardTitle>
-            <CardDescription>Customize how DevOS looks</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        <div className="space-y-4">
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Appearance
+          </div>
+          <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Dark Mode</Label>
-                <div className="text-sm text-muted-foreground">Toggle dark mode theme</div>
+                <Label className="text-sm">Dark Mode</Label>
+                <div className="text-xs text-muted-foreground">Toggle dark mode theme</div>
               </div>
               <Switch />
             </div>
-            <Separator />
+            <Separator className="bg-border/40" />
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Compact Mode</Label>
-                <div className="text-sm text-muted-foreground">Use a more compact layout</div>
+                <Label className="text-sm">Compact Mode</Label>
+                <div className="text-xs text-muted-foreground">Use a more compact layout</div>
               </div>
               <Switch />
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Notifications</CardTitle>
-            <CardDescription>Manage your notification preferences</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        <div className="space-y-4">
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Notifications
+          </div>
+          <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Email Notifications</Label>
-                <div className="text-sm text-muted-foreground">
+                <Label className="text-sm">Email Notifications</Label>
+                <div className="text-xs text-muted-foreground">
                   Receive updates about your projects
                 </div>
               </div>
               <Switch />
             </div>
-            <Separator />
+            <Separator className="bg-border/40" />
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
-                <Label>Project Reminders</Label>
-                <div className="text-sm text-muted-foreground">
+                <Label className="text-sm">Project Reminders</Label>
+                <div className="text-xs text-muted-foreground">
                   Get reminders for inactive projects
                 </div>
               </div>
               <Switch />
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Account</CardTitle>
-            <CardDescription>Manage your account settings</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Button variant="outline">Change Password</Button>
-            <Separator />
-            <div>
-              <Button variant="destructive">Delete Account</Button>
-              <p className="mt-2 text-sm text-muted-foreground">
+        <div className="space-y-4">
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Account
+          </div>
+          <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
+            <Button variant="outline" size="sm">Change Password</Button>
+            <Separator className="bg-border/40" />
+            <div className="space-y-2">
+              <Button variant="destructive" size="sm">Delete Account</Button>
+              <p className="text-xs text-muted-foreground">
                 Permanently delete your DevOS account and all associated data.
               </p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   )

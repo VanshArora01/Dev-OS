@@ -1,123 +1,111 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { BarChart3 } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 export default function DashboardPage() {
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Welcome back, Developer</h1>
-        <p className="text-muted-foreground">Here's what's happening with your projects</p>
+    <div className="space-y-12">
+      {/* Welcome Section */}
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold tracking-tight">Welcome back</h1>
+        <p className="text-sm text-muted-foreground">Here's what's happening with your work</p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Last Active Project
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">DevOS Platform</div>
-            <p className="text-xs text-muted-foreground">Updated 2 hours ago</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Personal Projects
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">8</div>
-            <p className="text-xs text-muted-foreground">3 active this week</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Freelance Projects
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">5</div>
-            <p className="text-xs text-muted-foreground">2 due this week</p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground">
-              Company Projects
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">3</div>
-            <p className="text-xs text-muted-foreground">1 in progress</p>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="grid gap-6 lg:grid-cols-7">
-        <Card className="lg:col-span-4">
-          <CardHeader>
-            <CardTitle>Working Consistency</CardTitle>
-            <CardDescription>Your activity over the last 7 days</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="flex h-48 items-end justify-between gap-4">
-              {[
-                { day: 'Mon', value: 65 },
-                { day: 'Tue', value: 80 },
-                { day: 'Wed', value: 55 },
-                { day: 'Thu', value: 90 },
-                { day: 'Fri', value: 75 },
-                { day: 'Sat', value: 40 },
-                { day: 'Sun', value: 50 },
-              ].map((item) => (
-                <div key={item.day} className="flex flex-1 flex-col items-center gap-2">
-                  <div className="relative w-full">
-                    <div
-                      className="w-full rounded-t-md bg-primary transition-all hover:opacity-80"
-                      style={{ height: `${item.value * 1.5}px` }}
-                    />
-                  </div>
-                  <span className="text-xs text-muted-foreground">{item.day}</span>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="lg:col-span-3">
-          <CardHeader>
-            <CardTitle>Projects at Risk</CardTitle>
-            <CardDescription>Needs attention</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
-                  <BarChart3 className="h-5 w-5" />
-                </div>
-                <div className="flex-1">
-                  <div className="font-medium">Client Dashboard</div>
-                  <div className="text-xs text-muted-foreground">No updates in 5 days</div>
-                </div>
+      {/* Primary Focus Area */}
+      <div className="space-y-8">
+        <div>
+          <div className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Active Project
+          </div>
+          <Link
+            href="/dashboard/projects/1"
+            className="group block rounded-lg border border-border/40 bg-card/50 p-6 transition-colors hover:border-border hover:bg-card"
+          >
+            <div className="flex items-start justify-between">
+              <div className="space-y-1">
+                <h2 className="text-xl font-semibold">DevOS Platform</h2>
+                <p className="text-sm text-muted-foreground">Last updated 2 hours ago</p>
               </div>
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-orange-100 text-orange-600">
-                  <BarChart3 className="h-5 w-5" />
-                </div>
-                <div className="flex-1">
-                  <div className="font-medium">Mobile App Refactor</div>
-                  <div className="text-xs text-muted-foreground">Deadline approaching</div>
+              <ArrowRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
+            </div>
+            <div className="mt-4 text-sm text-muted-foreground">
+              Building the ultimate developer workspace for daily execution
+            </div>
+          </Link>
+        </div>
+
+        {/* Asymmetric Layout */}
+        <div className="grid gap-8 lg:grid-cols-3">
+          {/* Left Column - Primary */}
+          <div className="space-y-8 lg:col-span-2">
+            <div>
+              <div className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Working Consistency
+              </div>
+              <div className="rounded-lg border border-border/40 bg-card/30 p-6">
+                <div className="flex h-32 items-end justify-between gap-3">
+                  {[
+                    { day: 'Mon', value: 65 },
+                    { day: 'Tue', value: 80 },
+                    { day: 'Wed', value: 55 },
+                    { day: 'Thu', value: 90 },
+                    { day: 'Fri', value: 75 },
+                    { day: 'Sat', value: 40 },
+                    { day: 'Sun', value: 50 },
+                  ].map((item) => (
+                    <div key={item.day} className="flex flex-1 flex-col items-center gap-2">
+                      <div className="relative w-full">
+                        <div
+                          className="w-full rounded-sm bg-foreground/80 transition-opacity hover:opacity-70"
+                          style={{ height: `${item.value}px` }}
+                        />
+                      </div>
+                      <span className="text-xs text-muted-foreground">{item.day}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
-          </CardContent>
-        </Card>
+
+            <div>
+              <div className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Project Distribution
+              </div>
+              <div className="grid gap-4 sm:grid-cols-3">
+                <div className="space-y-1 rounded-lg border border-border/40 bg-card/30 p-4">
+                  <div className="text-2xl font-semibold tabular-nums">8</div>
+                  <div className="text-xs text-muted-foreground">Personal</div>
+                </div>
+                <div className="space-y-1 rounded-lg border border-border/40 bg-card/30 p-4">
+                  <div className="text-2xl font-semibold tabular-nums">5</div>
+                  <div className="text-xs text-muted-foreground">Freelance</div>
+                </div>
+                <div className="space-y-1 rounded-lg border border-border/40 bg-card/30 p-4">
+                  <div className="text-2xl font-semibold tabular-nums">3</div>
+                  <div className="text-xs text-muted-foreground">Company</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Column - Secondary */}
+          <div className="space-y-6">
+            <div>
+              <div className="mb-4 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Needs Attention
+              </div>
+              <div className="space-y-3">
+                <div className="rounded-lg border border-border/40 bg-card/30 p-4">
+                  <div className="text-sm font-medium">Client Dashboard</div>
+                  <div className="mt-1 text-xs text-muted-foreground">No updates in 5 days</div>
+                </div>
+                <div className="rounded-lg border border-border/40 bg-card/30 p-4">
+                  <div className="text-sm font-medium">Mobile App Refactor</div>
+                  <div className="mt-1 text-xs text-muted-foreground">Deadline approaching</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

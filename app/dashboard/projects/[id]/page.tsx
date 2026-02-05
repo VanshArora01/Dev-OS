@@ -1,9 +1,16 @@
+import { Calendar } from "@/components/ui/calendar"
+import { CardContent } from "@/components/ui/card"
+import { CardDescription } from "@/components/ui/card"
+import { CardTitle } from "@/components/ui/card"
+import { CardHeader } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { ArrowLeft, Calendar, FolderKanban, LogOut } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
+import { LogOut } from 'lucide-react' // Import LogOut
+import { FolderKanban } from 'lucide-react' // Import FolderKanban
 
 // Mock project data
 const project = {
@@ -29,87 +36,60 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon" asChild>
+        <Button variant="ghost" size="icon" asChild className="h-8 w-8">
           <Link href="/dashboard/projects">
-            <ArrowLeft className="h-5 w-5" />
+            <ArrowLeft className="h-4 w-4" />
           </Link>
         </Button>
-        <div className="flex-1">
+        <div className="flex-1 space-y-1">
           <div className="flex items-center gap-3">
-            <h1 className="text-3xl font-bold tracking-tight">{project.name}</h1>
+            <h1 className="text-2xl font-semibold tracking-tight">{project.name}</h1>
             <Badge className={getTypeColor(project.type)} variant="secondary">
               {project.type}
             </Badge>
           </div>
-          <p className="text-muted-foreground">{project.description}</p>
+          <p className="text-sm text-muted-foreground">{project.description}</p>
         </div>
-        <Button variant="outline">
-          <LogOut className="mr-2 h-4 w-4" />
-          End Session
-        </Button>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Project Overview</CardTitle>
-            <CardDescription>Workspace for {project.name}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div>
-              <div className="mb-2 flex items-center gap-2 text-sm font-medium">
-                <Calendar className="h-4 w-4" />
-                Created
-              </div>
-              <p className="text-sm text-muted-foreground">
-                {new Date(project.createdAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
-              </p>
+      <div className="space-y-8">
+        {/* Yesterday Section */}
+        <div className="space-y-4">
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Yesterday
+          </div>
+          <div className="rounded-lg border border-border/40 bg-card/30 p-6">
+            <div className="prose prose-sm max-w-none text-sm text-muted-foreground">
+              <p>• Implemented authentication flow</p>
+              <p>• Set up database schema</p>
+              <p>• Designed landing page</p>
             </div>
-            <Separator />
-            <div>
-              <div className="mb-2 flex items-center gap-2 text-sm font-medium">
-                <FolderKanban className="h-4 w-4" />
-                Project Type
-              </div>
-              <p className="text-sm capitalize text-muted-foreground">{project.type}</p>
+          </div>
+        </div>
+
+        {/* Today Section */}
+        <div className="space-y-4">
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Today's Plan
+          </div>
+          <div className="rounded-lg border border-border/40 bg-card/30 p-6">
+            <div className="prose prose-sm max-w-none text-sm text-muted-foreground">
+              <p>• Complete dashboard UI</p>
+              <p>• Add project CRUD operations</p>
+              <p>• Test API endpoints</p>
             </div>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Yesterday's Work</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                • Implemented authentication flow
-                <br />
-                • Set up database schema
-                <br />• Designed landing page
-              </p>
-            </CardContent>
-          </Card>
+        <Separator className="bg-border/40" />
 
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-base">Today's Plan</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                • Complete dashboard UI
-                <br />
-                • Add project CRUD operations
-                <br />• Test API endpoints
-              </p>
-            </CardContent>
-          </Card>
+        {/* End Session */}
+        <div className="flex justify-end">
+          <Button variant="outline" size="sm">
+            End Session
+          </Button>
         </div>
       </div>
     </div>

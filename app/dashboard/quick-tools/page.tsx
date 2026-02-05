@@ -54,55 +54,69 @@ export default function QuickToolsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Quick Tools</h1>
-        <p className="text-muted-foreground">Essential utilities for everyday development</p>
+    <div className="space-y-8">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold tracking-tight">Quick Tools</h1>
+        <p className="text-sm text-muted-foreground">Essential utilities</p>
       </div>
 
-      <Tabs defaultValue="json">
-        <TabsList>
-          <TabsTrigger value="json">JSON Formatter</TabsTrigger>
-          <TabsTrigger value="base64">Base64 Encoder/Decoder</TabsTrigger>
-          <TabsTrigger value="uuid">UUID Generator</TabsTrigger>
+      <Tabs defaultValue="json" className="space-y-6">
+        <TabsList className="bg-transparent border-b border-border/40 rounded-none h-auto p-0 w-full justify-start gap-6">
+          <TabsTrigger 
+            value="json"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-0 pb-3"
+          >
+            JSON Formatter
+          </TabsTrigger>
+          <TabsTrigger 
+            value="base64"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-0 pb-3"
+          >
+            Base64
+          </TabsTrigger>
+          <TabsTrigger 
+            value="uuid"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-0 pb-3"
+          >
+            UUID
+          </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="json">
+        <TabsContent value="json" className="mt-0">
           <div className="grid gap-6 lg:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Input JSON</CardTitle>
-                <CardDescription>Paste your JSON here</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+            <div className="space-y-4">
+              <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Input
+              </div>
+              <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
                 <Textarea
                   placeholder='{"key":"value","array":[1,2,3]}'
                   value={jsonInput}
                   onChange={(e) => setJsonInput(e.target.value)}
                   rows={15}
-                  className="font-mono text-sm"
+                  className="font-mono text-sm bg-background/50"
                 />
-                <Button onClick={formatJSON} className="w-full">
+                <Button onClick={formatJSON} size="sm" className="w-full">
                   Format JSON
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Formatted Output</CardTitle>
-                <CardDescription>Beautified JSON</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+            <div className="space-y-4">
+              <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Output
+              </div>
+              <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
                 <Textarea
                   value={jsonOutput}
                   readOnly
                   rows={15}
-                  className="font-mono text-sm"
+                  className="font-mono text-sm bg-background/50"
                   placeholder="Formatted JSON will appear here..."
                 />
                 <Button
                   variant="outline"
+                  size="sm"
                   onClick={() => copyToClipboard(jsonOutput, 'json')}
                   disabled={!jsonOutput}
                   className="w-full"
@@ -117,52 +131,51 @@ export default function QuickToolsPage() {
                     </>
                   )}
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </TabsContent>
 
-        <TabsContent value="base64">
+        <TabsContent value="base64" className="mt-0">
           <div className="grid gap-6 lg:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Input</CardTitle>
-                <CardDescription>Text to encode/decode</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+            <div className="space-y-4">
+              <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Input
+              </div>
+              <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
                 <Textarea
                   placeholder="Enter text to encode or base64 to decode"
                   value={base64Input}
                   onChange={(e) => setBase64Input(e.target.value)}
                   rows={12}
-                  className="font-mono text-sm"
+                  className="font-mono text-sm bg-background/50"
                 />
                 <div className="flex gap-2">
-                  <Button onClick={encodeBase64} className="flex-1">
+                  <Button onClick={encodeBase64} size="sm" className="flex-1">
                     Encode
                   </Button>
-                  <Button onClick={decodeBase64} variant="outline" className="flex-1 bg-transparent">
+                  <Button onClick={decodeBase64} size="sm" variant="outline" className="flex-1 bg-transparent">
                     Decode
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Output</CardTitle>
-                <CardDescription>Result</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
+            <div className="space-y-4">
+              <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                Output
+              </div>
+              <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
                 <Textarea
                   value={base64Output}
                   readOnly
                   rows={12}
-                  className="font-mono text-sm"
+                  className="font-mono text-sm bg-background/50"
                   placeholder="Result will appear here..."
                 />
                 <Button
                   variant="outline"
+                  size="sm"
                   onClick={() => copyToClipboard(base64Output, 'base64')}
                   disabled={!base64Output}
                   className="w-full"
@@ -177,28 +190,25 @@ export default function QuickToolsPage() {
                     </>
                   )}
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           </div>
         </TabsContent>
 
-        <TabsContent value="uuid">
-          <Card className="mx-auto max-w-2xl">
-            <CardHeader>
-              <CardTitle>UUID Generator</CardTitle>
-              <CardDescription>Generate a random UUID v4</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <Button onClick={generateUUID} className="w-full">
+        <TabsContent value="uuid" className="mt-0">
+          <div className="mx-auto max-w-2xl space-y-4">
+            <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
+              <Button onClick={generateUUID} size="sm" className="w-full">
                 Generate UUID
               </Button>
               {uuidOutput && (
-                <div className="rounded-lg border bg-muted p-4">
+                <div className="rounded-lg border border-border/40 bg-background/50 p-4">
                   <code className="text-sm font-mono">{uuidOutput}</code>
                 </div>
               )}
               <Button
                 variant="outline"
+                size="sm"
                 onClick={() => copyToClipboard(uuidOutput, 'uuid')}
                 disabled={!uuidOutput}
                 className="w-full"
@@ -213,8 +223,8 @@ export default function QuickToolsPage() {
                   </>
                 )}
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </TabsContent>
       </Tabs>
     </div>

@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { UserButton } from '@clerk/nextjs'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   LayoutDashboard,
@@ -15,8 +14,7 @@ import {
   Zap,
   Wrench,
   Settings,
-  Search,
-  Bell
+  Terminal
 } from 'lucide-react'
 
 const navigation = [
@@ -32,63 +30,57 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-background">
       {/* Sidebar */}
-      <div className="hidden w-64 flex-col border-r bg-background md:flex">
-        <div className="flex h-16 items-center border-b px-6">
-          <Link href="/dashboard" className="text-xl font-bold">
-            DevOS
-          </Link>
+      <div className="hidden w-56 flex-col border-r border-border/40 md:flex">
+        <div className="flex h-14 items-center gap-2 border-b border-border/40 px-5">
+          <Terminal className="h-4 w-4" />
+          <span className="text-sm font-semibold tracking-tight">DevOS</span>
         </div>
-        <ScrollArea className="flex-1 px-3 py-4">
+        <ScrollArea className="flex-1 px-3 py-6">
           <nav className="space-y-1">
             {navigation.map((item) => {
-              const isActive = pathname === item.href
+              const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
               return (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
+                    'flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors',
                     isActive
-                      ? 'bg-primary text-primary-foreground'
-                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                      ? 'bg-secondary text-foreground'
+                      : 'text-muted-foreground hover:bg-secondary/50 hover:text-foreground'
                   )}
                 >
-                  <item.icon className="h-5 w-5" />
+                  <item.icon className="h-4 w-4" />
                   {item.name}
                 </Link>
               )
             })}
           </nav>
         </ScrollArea>
+        <div className="border-t border-border/40 p-3">
+          <div className="flex items-center gap-3 rounded-md px-3 py-2">
+            <UserButton 
+              afterSignOutUrl="/"
+              appearance={{
+                elements: {
+                  avatarBox: "h-7 w-7"
+                }
+              }}
+            />
+            <div className="flex-1 text-sm">
+              <div className="font-medium">Account</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Main Content */}
       <div className="flex flex-1 flex-col overflow-hidden">
-        {/* Top Bar */}
-        <header className="flex h-16 items-center justify-between border-b bg-background px-6">
-          <div className="flex items-center gap-4">
-            <div className="relative w-64">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="search"
-                placeholder="Search..."
-                className="h-9 w-full rounded-md border bg-background pl-9 pr-3 text-sm outline-none ring-offset-background focus:ring-2 focus:ring-ring focus:ring-offset-2"
-              />
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon">
-              <Bell className="h-5 w-5" />
-            </Button>
-            <UserButton afterSignOutUrl="/" />
-          </div>
-        </header>
-
         {/* Page Content */}
-        <main className="flex-1 overflow-auto bg-muted/30">
-          <div className="container mx-auto p-6">{children}</div>
+        <main className="flex-1 overflow-auto">
+          <div className="mx-auto max-w-7xl p-8">{children}</div>
         </main>
       </div>
     </div>

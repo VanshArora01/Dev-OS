@@ -1,9 +1,13 @@
 'use client'
 
+import { CardContent } from "@/components/ui/card"
+import { CardDescription } from "@/components/ui/card"
+import { CardTitle } from "@/components/ui/card"
+import { CardHeader } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import {
@@ -19,7 +23,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Plus, FolderKanban } from 'lucide-react'
+import { Plus, ArrowRight } from 'lucide-react'
+import { FolderKanban } from 'lucide-react' // Import FolderKanban
 
 // Mock data
 const mockProjects = [
@@ -81,15 +86,15 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">Projects</h1>
-          <p className="text-muted-foreground">Manage your personal, freelance, and company projects</p>
+    <div className="space-y-8">
+      <div className="flex items-end justify-between">
+        <div className="space-y-1">
+          <h1 className="text-2xl font-semibold tracking-tight">Projects</h1>
+          <p className="text-sm text-muted-foreground">Manage your work across contexts</p>
         </div>
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogTrigger asChild>
-            <Button>
+            <Button size="sm">
               <Plus className="mr-2 h-4 w-4" />
               New Project
             </Button>
@@ -132,35 +137,53 @@ export default function ProjectsPage() {
         </Dialog>
       </div>
 
-      <Tabs value={filter} onValueChange={(v) => setFilter(v as any)}>
-        <TabsList>
-          <TabsTrigger value="all">All Projects</TabsTrigger>
-          <TabsTrigger value="personal">Personal</TabsTrigger>
-          <TabsTrigger value="freelance">Freelance</TabsTrigger>
-          <TabsTrigger value="company">Company</TabsTrigger>
+      <Tabs value={filter} onValueChange={(v) => setFilter(v as any)} className="space-y-6">
+        <TabsList className="bg-transparent border-b border-border/40 rounded-none h-auto p-0 w-full justify-start gap-6">
+          <TabsTrigger 
+            value="all"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-0 pb-3"
+          >
+            All Projects
+          </TabsTrigger>
+          <TabsTrigger 
+            value="personal"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-0 pb-3"
+          >
+            Personal
+          </TabsTrigger>
+          <TabsTrigger 
+            value="freelance"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-0 pb-3"
+          >
+            Freelance
+          </TabsTrigger>
+          <TabsTrigger 
+            value="company"
+            className="rounded-none border-b-2 border-transparent data-[state=active]:border-foreground data-[state=active]:bg-transparent data-[state=active]:shadow-none px-0 pb-3"
+          >
+            Company
+          </TabsTrigger>
         </TabsList>
 
-        <TabsContent value={filter} className="mt-6">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <TabsContent value={filter} className="mt-0">
+          <div className="space-y-2">
             {filteredProjects.map((project) => (
               <Link key={project.id} href={`/dashboard/projects/${project.id}`}>
-                <Card className="transition-shadow hover:shadow-md">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <FolderKanban className="h-8 w-8 text-primary" />
-                      <Badge className={getTypeColor(project.type)} variant="secondary">
+                <div className="group flex items-center justify-between rounded-lg border border-border/40 bg-card/30 p-4 transition-colors hover:border-border hover:bg-card/50">
+                  <div className="flex-1 space-y-1">
+                    <div className="flex items-center gap-3">
+                      <h3 className="font-medium">{project.name}</h3>
+                      <Badge 
+                        variant="secondary" 
+                        className={`${getTypeColor(project.type)} text-xs`}
+                      >
                         {project.type}
                       </Badge>
                     </div>
-                    <CardTitle className="mt-4">{project.name}</CardTitle>
-                    <CardDescription>{project.description}</CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-xs text-muted-foreground">
-                      Created {new Date(project.createdAt).toLocaleDateString()}
-                    </p>
-                  </CardContent>
-                </Card>
+                    <p className="text-sm text-muted-foreground">{project.description}</p>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1" />
+                </div>
               </Link>
             ))}
           </div>

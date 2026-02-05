@@ -61,19 +61,18 @@ export default function APITesterPage() {
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">API Tester</h1>
-        <p className="text-muted-foreground">Test and debug your API endpoints</p>
+    <div className="space-y-8">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold tracking-tight">API Tester</h1>
+        <p className="text-sm text-muted-foreground">Test and debug endpoints</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card>
-          <CardHeader>
-            <CardTitle>Request</CardTitle>
-            <CardDescription>Configure your API request</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
+        <div className="space-y-4">
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Request
+          </div>
+          <div className="space-y-4 rounded-lg border border-border/40 bg-card/30 p-6">
             <div className="flex gap-2">
               <div className="w-32">
                 <Select value={method} onValueChange={setMethod}>
@@ -122,28 +121,27 @@ export default function APITesterPage() {
               </TabsContent>
             </Tabs>
 
-            <Button onClick={handleSend} disabled={!url || loading} className="w-full">
+            <Button onClick={handleSend} disabled={!url || loading} size="sm" className="w-full">
               <Send className="mr-2 h-4 w-4" />
               {loading ? 'Sending...' : 'Send Request'}
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle>Response</CardTitle>
-            <CardDescription>API response will appear here</CardDescription>
-          </CardHeader>
-          <CardContent>
+        <div className="space-y-4">
+          <div className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            Response
+          </div>
+          <div className="rounded-lg border border-border/40 bg-card/30 p-6">
             <Textarea
               value={response}
               readOnly
               placeholder="Send a request to see the response..."
               rows={20}
-              className="font-mono text-xs"
+              className="font-mono text-xs bg-background/50"
             />
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   )
