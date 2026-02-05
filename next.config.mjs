@@ -8,7 +8,7 @@ const nextConfig = {
   },
   experimental: {
     turbo: {
-      root: process.cwd(),
+      root: '/vercel/share/v0-project',
     },
   },
 }
