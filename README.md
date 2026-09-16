@@ -24,13 +24,30 @@
 
 ---
 
+> [!IMPORTANT]
+> **Notice for Recruiters & Evaluators regarding Third-Party Integrations:**
+> Live OAuth login for **Google Drive** and **GitHub** integrations is currently in the formal verification and authorization review process with Google and GitHub. As a result, live authentication with unlisted Google/GitHub accounts in the published build may present restricted consent screens.
+> 
+> 🎬 **Full Functionality Demonstration:** To see the complete application working seamlessly—including live Google Drive document sync, GitHub repository exploration, Gmail updates, and Neural AI Agent RAG—please refer to the full video walkthrough included in the repo: [**DevOS Demo.mp4**](./DevOS%20Demo.mp4).
+
+---
+
+## 🎬 Product Demo & Showcase
+
+If you are a recruiter, reviewer, or developer looking to evaluate DevOS in action without configuring local OAuth credentials or awaiting Google app verification:
+
+- 📹 **Video Demo**: Watch [**`DevOS Demo.mp4`**](./DevOS%20Demo.mp4) (available directly in the root of this repository) for an end-to-end walkthrough of all features.
+- ⚡ **Local Build**: You can still download and run the standalone desktop installer from the links above to experience the UI, PRD ingestion engine, Neural AI Agent, local workspace managers, and desktop session tracker.
+
+---
+
 ## Key Features
 
 - **Project Command Center**: Isolated workspaces for each project maintaining task boards, technical briefs, session logs, decisions, and technology stack context.
 - **Automated PRD Ingestion**: Upload or paste a Product Requirement Document (PRD), and DevOS auto-generates structured project briefs, architecture details, milestone tasks, and tech stack parameters.
-- **Neural AI Agent**: Project-aware AI assistant powered by Groq and Google Gemini. Capable of inspecting live codebase RAG, retrieving Google Drive files, generating reports (PDF/DOCX), sending Gmail updates, and executing project tasks.
-- **GitHub Workspace Integration**: Connect your repositories to explore commit logs, pull requests, file trees, and code context directly inside DevOS.
-- **Google Drive & Gmail Sync**: Search and summarize cloud documents, export project reports, and send automated email summaries via secure Google OAuth.
+- **Neural AI Agent**: Project-aware AI assistant powered by Groq and Google Gemini. Capable of inspecting live codebase RAG, retrieving cloud files, generating reports (PDF/DOCX), and executing project tasks.
+- **GitHub Workspace Integration** *(See Demo Video - OAuth Verification Pending)*: Connect your repositories to explore commit logs, pull requests, file trees, and code context directly inside DevOS.
+- **Google Drive & Gmail Sync** *(See Demo Video - OAuth Verification Pending)*: Search and summarize cloud documents, export project reports, and send automated email summaries via Google OAuth.
 - **Electron Desktop Application**: Standalone desktop app featuring a floating widget session tracker, background screenshot logger, tray menu integration, and local OAuth callback server.
 - **Guided Onboarding System**: Built-in interactive SVG spotlight product tours for Dashboard, Project Workspaces, GitHub, Google Drive, Gmail, and Neural AI.
 
