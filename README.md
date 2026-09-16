@@ -11,6 +11,15 @@
 [![Node.js](https://img.shields.io/badge/Node.js-22.x-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://mongodb.com)
 
+<br/>
+
+### ⬇️ Download DevOS Desktop App for Windows
+
+| Option | Download Link | Description | Size |
+| :--- | :--- | :--- | :--- |
+| **Windows Installer** | [**Download DevOS Setup 1.0.0.exe**](https://github.com/VanshArora01/Dev-OS/raw/main/downloads/DevOS%20Setup%201.0.0.exe) | Standard Windows installer with Start Menu & Desktop shortcuts | ~78.0 MB |
+| **Portable (Zero-Install)** | [**Download DevOS 1.0.0.exe**](https://github.com/VanshArora01/Dev-OS/raw/main/downloads/DevOS%201.0.0.exe) | Single-file portable application — double click and run instantly | ~77.7 MB |
+
 </div>
 
 ---
