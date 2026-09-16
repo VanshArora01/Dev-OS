@@ -1,0 +1,211 @@
+[
+  {
+    "asset_id": "A12",
+    "hazard_score": 1.1,
+    "exposure_score": 1,
+    "vulnerability_score": 0.26,
+    "risk_score": 0.82,
+    "risk_level": "MEDIUM",
+    "id": "g90x6810p",
+    "createdAt": "2026-02-19T23:57:18.095Z",
+    "updatedAt": "2026-02-19T23:57:18.095Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 0.48,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.44,
+    "risk_score": 0.58,
+    "risk_level": "LOW",
+    "id": "63519551p",
+    "createdAt": "2026-02-19T23:57:18.105Z",
+    "updatedAt": "2026-02-19T23:57:18.105Z"
+  },
+  {
+    "asset_id": "A14",
+    "hazard_score": 0.92,
+    "exposure_score": 0.6,
+    "vulnerability_score": 0.16,
+    "risk_score": 0.59,
+    "risk_level": "LOW",
+    "id": "29tc4pha3",
+    "createdAt": "2026-02-19T23:57:18.109Z",
+    "updatedAt": "2026-02-19T23:57:18.109Z"
+  },
+  {
+    "asset_id": "A12",
+    "hazard_score": 0.65,
+    "exposure_score": 1,
+    "vulnerability_score": 0.26,
+    "risk_score": 0.64,
+    "risk_level": "MEDIUM",
+    "id": "jsnjsc52k",
+    "createdAt": "2026-02-19T23:57:33.768Z",
+    "updatedAt": "2026-02-19T23:57:33.768Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 0.45,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.44,
+    "risk_score": 0.57,
+    "risk_level": "LOW",
+    "id": "kvnkyqru9",
+    "createdAt": "2026-02-19T23:57:33.779Z",
+    "updatedAt": "2026-02-19T23:57:33.779Z"
+  },
+  {
+    "asset_id": "A14",
+    "hazard_score": 0.63,
+    "exposure_score": 0.6,
+    "vulnerability_score": 0.16,
+    "risk_score": 0.48,
+    "risk_level": "LOW",
+    "id": "erdlnzwky",
+    "createdAt": "2026-02-19T23:57:33.787Z",
+    "updatedAt": "2026-02-19T23:57:33.787Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 0.52,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.49,
+    "risk_score": 0.61,
+    "risk_level": "MEDIUM",
+    "id": "e6kekd4gh",
+    "createdAt": "2026-02-19T23:57:33.792Z",
+    "updatedAt": "2026-02-19T23:57:33.792Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 1,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.51,
+    "risk_score": 0.81,
+    "risk_level": "MEDIUM",
+    "id": "ab410zv2m",
+    "createdAt": "2026-02-19T23:57:33.795Z",
+    "updatedAt": "2026-02-19T23:57:33.795Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 1.01,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.52,
+    "risk_score": 0.82,
+    "risk_level": "MEDIUM",
+    "id": "x4qou7bwu",
+    "createdAt": "2026-02-19T23:57:33.800Z",
+    "updatedAt": "2026-02-19T23:57:33.800Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 0.78,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.47,
+    "risk_score": 0.71,
+    "risk_level": "MEDIUM",
+    "id": "4ucnuyhfr",
+    "createdAt": "2026-02-19T23:57:33.805Z",
+    "updatedAt": "2026-02-19T23:57:33.805Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 0.73,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.51,
+    "risk_score": 0.7,
+    "risk_level": "MEDIUM",
+    "id": "lwwlfos6m",
+    "createdAt": "2026-02-19T23:57:33.809Z",
+    "updatedAt": "2026-02-19T23:57:33.809Z"
+  },
+  {
+    "asset_id": "A12",
+    "hazard_score": 0.85,
+    "exposure_score": 1,
+    "vulnerability_score": 0.26,
+    "risk_score": 0.72,
+    "risk_level": "MEDIUM",
+    "id": "ou4vsmu8x",
+    "createdAt": "2026-02-19T23:58:06.922Z",
+    "updatedAt": "2026-02-19T23:58:06.922Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 0.45,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.44,
+    "risk_score": 0.57,
+    "risk_level": "LOW",
+    "id": "q9mp3qff3",
+    "createdAt": "2026-02-19T23:58:06.945Z",
+    "updatedAt": "2026-02-19T23:58:06.945Z"
+  },
+  {
+    "asset_id": "A14",
+    "hazard_score": 0.75,
+    "exposure_score": 0.6,
+    "vulnerability_score": 0.16,
+    "risk_score": 0.53,
+    "risk_level": "LOW",
+    "id": "pcq3sambn",
+    "createdAt": "2026-02-19T23:58:06.955Z",
+    "updatedAt": "2026-02-19T23:58:06.955Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 1.3,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.64,
+    "risk_score": 0.97,
+    "risk_level": "HIGH",
+    "id": "qu16ooxs0",
+    "createdAt": "2026-02-19T23:58:06.964Z",
+    "updatedAt": "2026-02-19T23:58:06.964Z"
+  },
+  {
+    "asset_id": "A12",
+    "hazard_score": 0.85,
+    "exposure_score": 1,
+    "vulnerability_score": 0.26,
+    "risk_score": 0.72,
+    "risk_level": "MEDIUM",
+    "id": "q3bi2749n",
+    "createdAt": "2026-02-19T23:58:27.613Z",
+    "updatedAt": "2026-02-19T23:58:27.613Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 0.39,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.44,
+    "risk_score": 0.54,
+    "risk_level": "LOW",
+    "id": "svs5d8vve",
+    "createdAt": "2026-02-19T23:58:27.623Z",
+    "updatedAt": "2026-02-19T23:58:27.623Z"
+  },
+  {
+    "asset_id": "A14",
+    "hazard_score": 0.37,
+    "exposure_score": 0.6,
+    "vulnerability_score": 0.16,
+    "risk_score": 0.38,
+    "risk_level": "LOW",
+    "id": "ywcow0f12",
+    "createdAt": "2026-02-19T23:58:27.628Z",
+    "updatedAt": "2026-02-19T23:58:27.628Z"
+  },
+  {
+    "asset_id": "A13",
+    "hazard_score": 1.35,
+    "exposure_score": 0.85,
+    "vulnerability_score": 0.64,
+    "risk_score": 0.99,
+    "risk_level": "HIGH",
+    "id": "4zoljfm4z",
+    "createdAt": "2026-02-19T23:58:27.634Z",
+    "updatedAt": "2026-02-19T23:58:27.634Z"
+  }
+]

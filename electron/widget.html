@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: transparent;
+      width: 240px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      cursor: default;
+    }
+
+    .widget-container {
+      width: 220px;
+      background: rgba(10, 10, 12, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1.5px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.02);
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      cursor: grab;
+      position: relative;
+    }
+
+    .widget-container:active { cursor: grabbing; background: rgba(15, 15, 18, 0.95); }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .brand {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: rgba(255,255,255,0.25);
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    #closeBtn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.25);
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+
+    #closeBtn:hover {
+      color: #FF4B4B;
+      background: rgba(255, 75, 75, 0.1);
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+    .status-dot.active {
+      background: #00FF87;
+      box-shadow: 0 0 12px rgba(0,255,135,0.6);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.7; }
+    }
+
+    .timer-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .timer {
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.5px;
+      font-variant-numeric: tabular-nums;
+      line-height: 1;
+    }
+    .timer.active { color: #fff; }
+
+    .sub-text {
+      font-size: 8px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.15);
+      margin-top: 2px;
+    }
+
+    .action-btn {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+    }
+
+    .action-btn:hover { background: rgba(255, 255, 255, 0.1); transform: scale(1.05); }
+    .action-btn:active { transform: scale(0.95); }
+    
+    .action-btn.start { color: #00FF87; }
+    .action-btn.stop { color: #FF4B4B; }
+
+    #screenshot-count-pill {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 3px 8px;
+      border-radius: 10px;
+      font-size: 8px;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.3);
+      display: none;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="widget-container" id="pill">
+    <div class="header">
+      <span class="brand">DevOS</span>
+      <button id="closeBtn">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    
+    <div class="content">
+      <div class="status-dot" id="dot"></div>
+      
+      <div class="timer-container">
+        <div class="timer" id="timer">00:00:00</div>
+        <div class="sub-text" id="statusLabel">READY</div>
+      </div>
+
+      <div id="screenshot-count-pill">0</div>
+
+      <button class="action-btn start" id="startBtn">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <button class="action-btn stop" id="endBtn" style="display: none;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <script>
+    let active = false;
+    let startTime = null;
+    let timerInterval = null;
+
+    // Draggable Logic
+    let isDragging = false;
+    let startX, startY;
+
+    const pill = document.getElementById('pill');
+    
+    pill.addEventListener('mousedown', (e) => {
+      if (e.target.closest('#closeBtn') || e.target.closest('.action-btn')) return;
+      isDragging = true;
+      startX = e.screenX;
+      startY = e.screenY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        const deltaX = e.screenX - startX;
+        const deltaY = e.screenY - startY;
+        startX = e.screenX;
+        startY = e.screenY;
+        window.electronAPI.moveWindow({ x: deltaX, y: deltaY });
+      }
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    function updateTimer() {
+      if (!startTime) return;
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
+      const h = String(Math.floor(elapsed / 3600)).padStart(2, "0");
+      const m = String(Math.floor((elapsed % 3600) / 60)).padStart(2, "0");
+      const s = String(elapsed % 60).padStart(2, "0");
+      document.getElementById("timer").textContent = `${h}:${m}:${s}`;
+    }
+
+    function startVisuals(providedStartTime) {
+      if (active) return;
+      active = true;
+      startTime = providedStartTime || Date.now();
+      
+      document.getElementById("dot").classList.add("active");
+      document.getElementById("statusLabel").textContent = "RECORDING";
+      document.getElementById("timer").classList.add("active");
+      document.getElementById("startBtn").style.display = "none";
+      document.getElementById("endBtn").style.display = "flex";
+      
+      updateTimer();
+      timerInterval = setInterval(updateTimer, 1000);
+    }
+
+    function stopVisuals() {
+      if (!active) return;
+      active = false;
+      clearInterval(timerInterval);
+      timerInterval = null;
+      document.getElementById("dot").classList.remove("active");
+      document.getElementById("statusLabel").textContent = "READY";
+      document.getElementById("endBtn").style.display = "none";
+      document.getElementById("startBtn").style.display = "flex";
+      document.getElementById("timer").classList.remove("active");
+      document.getElementById("timer").textContent = "00:00:00";
+      document.getElementById("screenshot-count-pill").style.display = "none";
+      startTime = null;
+    }
+
+    if (window.electronAPI) {
+      window.electronAPI.onScreenshotTaken((count) => {
+        const p = document.getElementById("screenshot-count-pill");
+        p.style.display = "block";
+        p.textContent = count;
+      });
+      window.electronAPI.onSessionStarted((data) => {
+        if (data && data.startTime) startVisuals(data.startTime);
+        else startVisuals();
+      });
+      window.electronAPI.onSessionEnded(() => stopVisuals());
+    }
+
+    document.getElementById("startBtn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      startVisuals();
+      window.electronAPI.startSession();
+    });
+
+    document.getElementById("endBtn").addEventListener("click", async (e) => {
+      e.stopPropagation();
+      if (!active) return;
+      document.getElementById("statusLabel").textContent = "ANALYZING";
+      const result = await window.electronAPI.endSession();
+      stopVisuals();
+      window.electronAPI.openMainWindow();
+    });
+
+    document.getElementById("closeBtn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      window.electronAPI.closeWidget();
+    });
+
+    pill.addEventListener('dblclick', () => {
+      window.electronAPI.openMainWindow();
+    });
+  </script>
+</body>
+</html>

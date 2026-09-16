@@ -1,0 +1,150 @@
+# ShopFlow — E-Commerce Platform PRD
+
+**Document Version:** 1.0  
+**Author:** Product Team  
+**Date:** August 1, 2026
+
+---
+
+## 1. Project Overview
+
+### 1.1 Objective
+Build a full-featured e-commerce web platform called **ShopFlow** that enables small businesses to sell products online with secure payments, inventory management, and an admin dashboard.
+
+### 1.2 Problem Statement
+Small retailers lack affordable, easy-to-use e-commerce solutions that integrate payments and inventory without complex setup.
+
+### 1.3 Target Users
+- **Store Owners:** Small business owners managing products and orders
+- **Customers:** End users browsing, purchasing, and tracking orders
+- **Admin Staff:** Internal team managing platform operations
+
+### 1.4 Project Type
+Freelance client project
+
+---
+
+## 2. Scope
+
+### 2.1 In Scope
+- Product catalog with categories and search
+- Shopping cart and checkout
+- Stripe payment integration
+- Google OAuth authentication for customers
+- Admin dashboard for product and order management
+- Order tracking for customers
+- Email notifications for order confirmation
+
+### 2.2 Out of Scope
+- Mobile native apps (web-responsive only)
+- Multi-currency support (USD only for v1)
+- Marketplace / multi-vendor features
+
+### 2.3 Constraints
+- Must launch before **September 30, 2026**
+- Budget: fixed freelance contract
+- Must comply with PCI requirements via Stripe (no direct card storage)
+- Hosting must use client's existing AWS account
+
+---
+
+## 3. Technology Requirements
+
+The client has explicitly specified the following technology stack:
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 18 with TypeScript |
+| UI Framework | Tailwind CSS |
+| Backend | Node.js with Express |
+| Database | MongoDB |
+| Authentication | Google OAuth 2.0 for customers, JWT for API sessions |
+| Payments | Stripe API |
+| Hosting | AWS (EC2 + S3 for product images) |
+| Email | SendGrid for transactional emails |
+
+---
+
+## 4. Functional Requirements
+
+### 4.1 Authentication (FR-AUTH)
+- **FR-AUTH-1:** Customers must authenticate using Google OAuth
+- **FR-AUTH-2:** Admin users authenticate with email/password + JWT
+- **FR-AUTH-3:** Session tokens expire after 24 hours
+
+### 4.2 Product Catalog (FR-PROD)
+- **FR-PROD-1:** Store owners can create, edit, and delete products
+- **FR-PROD-2:** Products support images (up to 5), title, description, price, SKU, and category
+- **FR-PROD-3:** Customers can browse products by category and search by name
+- **FR-PROD-4:** Product images stored in AWS S3
+
+### 4.3 Shopping Cart (FR-CART)
+- **FR-CART-1:** Customers can add/remove items from cart
+- **FR-CART-2:** Cart persists across sessions for authenticated users
+- **FR-CART-3:** Cart shows subtotal, tax estimate, and total
+
+### 4.4 Checkout & Payments (FR-PAY)
+- **FR-PAY-1:** Checkout flow: cart review → shipping address → payment → confirmation
+- **FR-PAY-2:** Payments processed via Stripe API
+- **FR-PAY-3:** Order confirmation email sent via SendGrid
+
+### 4.5 Admin Dashboard (FR-ADMIN)
+- **FR-ADMIN-1:** Admin can view all orders with status filters
+- **FR-ADMIN-2:** Admin can update order status (pending, shipped, delivered, cancelled)
+- **FR-ADMIN-3:** Admin can manage product inventory quantities
+- **FR-ADMIN-4:** Dashboard shows daily sales summary
+
+### 4.6 Order Tracking (FR-ORDER)
+- **FR-ORDER-1:** Customers can view order history
+- **FR-ORDER-2:** Customers receive email updates on status changes
+
+---
+
+## 5. Milestones & Timeline
+
+| Phase | Description | Deadline |
+|-------|-------------|----------|
+| Phase 1: Requirements & Design | Finalize requirements, UI mockups, architecture | **September 10, 2026** |
+| Phase 2: Core Backend | Database, auth, product APIs | September 20, 2026 |
+| Phase 3: Frontend & Integration | Customer storefront, cart, checkout | September 25, 2026 |
+| Phase 4: Admin & Payments | Admin dashboard, Stripe integration | September 28, 2026 |
+| Phase 5: Testing & Launch | QA, security review, deployment | **September 30, 2026** |
+
+### Key Events
+- **Client presentation:** October 5, 2026
+- **Final project delivery:** September 30, 2026
+
+---
+
+## 6. Deliverables
+
+1. Deployed e-commerce web application on AWS
+2. Admin dashboard with full CRUD for products and orders
+3. Stripe payment integration (test + production modes)
+4. Google OAuth customer authentication
+5. Technical documentation and API reference
+6. Source code repository with README
+
+---
+
+## 7. Risks
+
+| Risk | Severity | Mitigation |
+|------|----------|------------|
+| Stripe API integration complexity | High | Use Stripe Checkout hosted flow for v1 |
+| AWS deployment delays | Medium | Client provides AWS access by September 5 |
+| Scope creep on admin features | Medium | Strict v1 scope — defer analytics to v2 |
+
+---
+
+## 8. Decisions
+
+- **D-1:** Use Stripe Checkout (hosted) instead of custom payment form — reduces PCI scope
+- **D-2:** MongoDB chosen over PostgreSQL per client preference for document flexibility
+- **D-3:** Google OAuth only for customers; admin uses separate credential system
+
+---
+
+## 9. Expected Outcome
+
+A production-ready e-commerce platform enabling the client to onboard their first 50 products and process real customer orders by September 30, 2026.

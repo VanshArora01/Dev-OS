@@ -1,0 +1,39 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon --config nodemon.json server.js",
+    "test": "node tests/googleDrive.integration.test.js && node tests/documentGeneration.test.js && node tests/github.integration.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@clerk/backend": "^3.16.6",
+    "@google/generative-ai": "^0.24.1",
+    "@qdrant/js-client-rest": "^1.19.0",
+    "axios": "^1.13.5",
+    "cors": "^2.8.6",
+    "csv-parser": "^3.2.0",
+    "docx": "^9.7.1",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "googleapis": "^174.0.1",
+    "groq-sdk": "^0.37.0",
+    "mammoth": "^1.12.0",
+    "mongodb": "^7.1.0",
+    "mongoose": "^9.2.1",
+    "multer": "^2.1.1",
+    "nodemailer": "^8.0.1",
+    "pdf-parse": "^2.4.5",
+    "pdfkit": "^0.17.2",
+    "puppeteer": "^25.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

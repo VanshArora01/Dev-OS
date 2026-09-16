@@ -1,0 +1,55 @@
+{
+  "name": "devos",
+  "version": "1.0.0",
+  "description": "Developer Operating System — never lose context again",
+  "author": "DevOS Team",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "dist": "powershell -ExecutionPolicy Bypass -Command \"$ErrorActionPreference = 'Stop'; cd ../frontend; npm run build; cd ../electron; if (Test-Path frontend-dist) { Remove-Item -Recurse -Force frontend-dist }; Copy-Item -Recurse ../frontend/dist ./frontend-dist; $env:ELECTRON_BUILDER_ALLOW_HANDLE_SYMLINK_AS_HARDLINK='1'; npm run build\""
+  },
+  "build": {
+    "appId": "com.devos.workspace",
+    "productName": "DevOS",
+    "copyright": "DevOS",
+    "asar": true,
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "DevOS",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": false
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "authCallbackServer.js",
+      "widget.html",
+      "assets/**",
+      {
+        "from": "frontend-dist",
+        "to": "frontend-dist",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^29.0.0",
+    "electron-builder": "^24.0.0"
+  }
+}
