@@ -28,7 +28,7 @@
 > **Notice for Recruiters & Evaluators regarding Third-Party Integrations:**
 > Live OAuth login for **Google Drive** and **GitHub** integrations is currently in the formal verification and authorization review process with Google and GitHub. As a result, live authentication with unlisted Google/GitHub accounts in the published build may present restricted consent screens.
 > 
-> 🎬 **Full Functionality Demonstration:** To see the complete application working seamlessly—including live Google Drive document sync, GitHub repository exploration, Gmail updates, and Neural AI Agent RAG—please refer to the full video walkthrough included in the repo: [**DevOS Demo.mp4**](./DevOS%20Demo.mp4).
+> 🎬 **Full Functionality Demonstration:** To see the complete application working seamlessly—including live Google Drive document sync, GitHub repository exploration, Gmail updates, and Neural AI Agent RAG—please watch the full video walkthrough directly in your browser: [**▶️ Watch DevOS Demo Video**](https://github.com/VanshArora01/Dev-OS/raw/main/DevOS%20Demo.mp4).
 
 ---
 
@@ -36,7 +36,7 @@
 
 If you are a recruiter, reviewer, or developer looking to evaluate DevOS in action without configuring local OAuth credentials or awaiting Google app verification:
 
-- 📹 **Video Demo**: Watch [**`DevOS Demo.mp4`**](./DevOS%20Demo.mp4) (available directly in the root of this repository) for an end-to-end walkthrough of all features.
+- 📹 **Video Demo**: Click [**▶️ Watch DevOS Demo Video (Plays directly in browser)**](https://github.com/VanshArora01/Dev-OS/raw/main/DevOS%20Demo.mp4) to watch an end-to-end walkthrough of all features.
 - ⚡ **Local Build**: You can still download and run the standalone desktop installer from the links above to experience the UI, PRD ingestion engine, Neural AI Agent, local workspace managers, and desktop session tracker.
 
 ---
