@@ -24,20 +24,20 @@
 
 ---
 
-> [!IMPORTANT]
-> **Notice for Recruiters & Evaluators regarding Third-Party Integrations:**
-> Live OAuth login for **Google Drive** and **GitHub** integrations is currently in the formal verification and authorization review process with Google and GitHub. As a result, live authentication with unlisted Google/GitHub accounts in the published build may present restricted consent screens.
+> [!NOTE]
+> **Google Drive & GitHub Integrations Note:**
+> Live OAuth login for Google Drive and GitHub integrations is currently awaiting formal app verification by Google and GitHub, so authentication with new external accounts is currently restricted.
 > 
-> 🎬 **Full Functionality Demonstration:** To see the complete application working seamlessly—including live Google Drive document sync, GitHub repository exploration, Gmail updates, and Neural AI Agent RAG—please watch the full video walkthrough directly in your browser: [**▶️ Watch DevOS Demo Video**](https://github.com/VanshArora01/Dev-OS/raw/main/DevOS%20Demo.mp4).
+> 🎬 **See DevOS in Action:** Want to check out the app in action with live Google Drive file sync, GitHub repository context, Gmail updates, and Neural AI RAG? Watch the complete walk-through video directly in your browser: [**▶️ Watch DevOS Demo Video**](https://github.com/VanshArora01/Dev-OS/raw/main/DevOS%20Demo.mp4).
 
 ---
 
-## 🎬 Product Demo & Showcase
+## 🎬 See DevOS in Action
 
-If you are a recruiter, reviewer, or developer looking to evaluate DevOS in action without configuring local OAuth credentials or awaiting Google app verification:
+Want to explore DevOS and see all its features live without needing to configure local API keys or OAuth credentials?
 
-- 📹 **Video Demo**: Click [**▶️ Watch DevOS Demo Video (Plays directly in browser)**](https://github.com/VanshArora01/Dev-OS/raw/main/DevOS%20Demo.mp4) to watch an end-to-end walkthrough of all features.
-- ⚡ **Local Build**: You can still download and run the standalone desktop installer from the links above to experience the UI, PRD ingestion engine, Neural AI Agent, local workspace managers, and desktop session tracker.
+- 📹 **Full Demo Video**: Watch [**▶️ DevOS Demo Video**](https://github.com/VanshArora01/Dev-OS/raw/main/DevOS%20Demo.mp4) (plays directly in your browser) for an end-to-end walkthrough of all features.
+- ⚡ **Try the App**: Download the standalone desktop installer from the table above to experience the UI, PRD ingestion engine, Neural AI Agent, local workspace managers, and desktop session tracker.
 
 ---
 
@@ -46,8 +46,8 @@ If you are a recruiter, reviewer, or developer looking to evaluate DevOS in acti
 - **Project Command Center**: Isolated workspaces for each project maintaining task boards, technical briefs, session logs, decisions, and technology stack context.
 - **Automated PRD Ingestion**: Upload or paste a Product Requirement Document (PRD), and DevOS auto-generates structured project briefs, architecture details, milestone tasks, and tech stack parameters.
 - **Neural AI Agent**: Project-aware AI assistant powered by Groq and Google Gemini. Capable of inspecting live codebase RAG, retrieving cloud files, generating reports (PDF/DOCX), and executing project tasks.
-- **GitHub Workspace Integration** *(See Demo Video - OAuth Verification Pending)*: Connect your repositories to explore commit logs, pull requests, file trees, and code context directly inside DevOS.
-- **Google Drive & Gmail Sync** *(See Demo Video - OAuth Verification Pending)*: Search and summarize cloud documents, export project reports, and send automated email summaries via Google OAuth.
+- **GitHub Workspace Integration** *(See Video Demo)*: Connect your repositories to explore commit logs, pull requests, file trees, and code context directly inside DevOS.
+- **Google Drive & Gmail Sync** *(See Video Demo)*: Search and summarize cloud documents, export project reports, and send automated email summaries via Google OAuth.
 - **Electron Desktop Application**: Standalone desktop app featuring a floating widget session tracker, background screenshot logger, tray menu integration, and local OAuth callback server.
 - **Guided Onboarding System**: Built-in interactive SVG spotlight product tours for Dashboard, Project Workspaces, GitHub, Google Drive, Gmail, and Neural AI.
 
