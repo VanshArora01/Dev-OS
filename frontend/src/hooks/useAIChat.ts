@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { useUser } from '@clerk/clerk-react';
+import { useAuthUser } from '@/lib/auth';
 import { useQueryClient } from '@tanstack/react-query';
 import {
     aiChat,
@@ -138,7 +138,7 @@ export function useAIChat(
         surface = 'project',
         sessionKey,
     } = options;
-    const { user } = useUser();
+    const { user } = useAuthUser();
     const queryClient = useQueryClient();
     const [conversations, setConversations] = useState<Conversation[]>([]);
     const [activeId, setActiveId] = useState<string | null>(activeConversationId || null);

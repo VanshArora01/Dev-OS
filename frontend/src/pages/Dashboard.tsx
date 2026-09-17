@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/clerk-react";
+import { useAuthUser } from "@/lib/auth";
 import { Plus, ArrowRight, FolderKanban, PlayCircle, CalendarClock, Timer, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ProjectsGrid from "@/components/ProjectsGrid";
@@ -20,7 +20,7 @@ import { useAnimatedCounter } from "@/hooks/useAnimatedCounter";
 import { useOnboarding } from "@/context/OnboardingContext";
 
 export default function Dashboard() {
-  const { user } = useUser();
+  const { user } = useAuthUser();
   const navigate = useNavigate();
   const { triggerFirstProjectTour } = useOnboarding();
   const [isModalOpen, setIsModalOpen] = useState(false);

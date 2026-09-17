@@ -13,6 +13,8 @@ import {
   Sparkles,
 } from "lucide-react";
 import { useUser, UserButton } from "@clerk/clerk-react";
+import { useAuthUser } from "@/lib/auth";
+import { isDemoMode, setDemoMode } from "@/lib/api";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   DropdownMenu,
@@ -43,7 +45,7 @@ const COLLAPSE_KEY = "devos:sidebar-collapsed";
 export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useUser();
+  const { user, isDemo } = useAuthUser();
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem(COLLAPSE_KEY) === "1");
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import { Folder } from "lucide-react";
 import type { Project } from "@/lib/types";
 import { useState, useEffect } from "react";
 import { getProjects, deleteProject } from "@/lib/api";
-import { useUser } from "@clerk/clerk-react";
+import { useAuthUser } from "@/lib/auth";
 import { toast } from "sonner";
 import { ProjectCard } from "@/components/ProjectCard";
 import { BentoCard } from "@/components/ui/bento-card";
@@ -11,12 +11,14 @@ interface ProjectsGridProps {
     limit?: number;
     typeFilter?: "all" | Project["type"];
     statusFilter?: "all" | Project["status"];
+    projects?: Project[];
+    onSelectProject?: (project: Project) => void;
 }
 
-export default function ProjectsGrid({ limit, typeFilter = "all", statusFilter = "all" }: ProjectsGridProps) {
-    const [projects, setProjects] = useState<Project[]>([]);
-    const [loading, setLoading] = useState(true);
-    const { user } = useUser();
+export default function ProjectsGrid({ limit, typeFilter = "all", statusFilter = "all", projects: initialProjects, onSelectProject }: ProjectsGridProps) {
+    const [projects, setProjects] = useState<Project[]>(initialProjects || []);
+    const [loading, setLoading] = useState(!initialProjects);
+    const { user } = useAuthUser();
 
     const fetchProjects = async () => {
         if (user?.id) {

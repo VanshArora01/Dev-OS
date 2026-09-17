@@ -5,6 +5,7 @@ import { SplitText } from "gsap/SplitText";
 import { SignInButton, SignUpButton } from "@clerk/clerk-react";
 import { ChevronDown, BarChart3, CheckCircle2, MousePointer2, Zap } from "lucide-react";
 import { motion } from "framer-motion";
+import { setDemoMode } from "@/lib/api";
 
 import AnoAI from "@/components/ui/animated-shader-background";
 import BentoFeatures from "@/components/landing/BentoFeatures";
@@ -107,15 +108,26 @@ function LandingContent() {
                         and optimizing your deployment velocity.
                     </p>
 
-                    <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-6">
+                    <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setDemoMode(true);
+                                window.location.hash = "#/";
+                                window.location.reload();
+                            }}
+                            className="group h-16 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 px-10 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:scale-105 hover:brightness-110 shadow-[0_20px_60px_rgba(16,185,129,0.4)] min-w-[220px] flex items-center justify-center gap-3"
+                        >
+                            Try Guest Demo Mode
+                            <Zap size={14} fill="currentColor" className="animate-pulse text-amber-300" />
+                        </button>
                         <SignUpButton mode="modal">
-                            <button type="button" className="group h-16 rounded-2xl bg-indigo-600 px-10 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:scale-105 hover:bg-indigo-500 shadow-[0_20px_60px_rgba(79,70,229,0.4)] min-w-[220px] flex items-center justify-center gap-4">
+                            <button type="button" className="group h-16 rounded-2xl bg-indigo-600 px-8 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:scale-105 hover:bg-indigo-500 shadow-[0_20px_60px_rgba(79,70,229,0.4)] min-w-[180px] flex items-center justify-center gap-2">
                                 Sign Up
-                                <Zap size={14} fill="currentColor" className="animate-pulse" />
                             </button>
                         </SignUpButton>
                         <SignInButton mode="modal">
-                            <button type="button" className="group h-16 rounded-2xl border border-white/10 bg-white/[0.02] px-10 text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl transition-all hover:bg-white/[0.05] hover:border-white/20 shadow-2xl min-w-[220px]">
+                            <button type="button" className="group h-16 rounded-2xl border border-white/10 bg-white/[0.02] px-8 text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl transition-all hover:bg-white/[0.05] hover:border-white/20 shadow-2xl min-w-[160px]">
                                 Log In
                             </button>
                         </SignInButton>
