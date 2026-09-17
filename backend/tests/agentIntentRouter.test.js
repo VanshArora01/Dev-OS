@@ -310,17 +310,13 @@ async function testFailingCaseNoGithub() {
     console.log('PASS exact failing case routing');
 }
 
-async function main() {
-    testEmailDetection();
-    testToolAliases();
-    testUnavailableToolError();
-    testMalformedRecovery();
-    await testFailingCaseNoGithub();
-    await runMatrix();
-    console.log('All agent intent router tests passed.');
-}
-
-main().catch((err) => {
-    console.error('FAIL', err.message);
-    process.exit(1);
+describe('Agent Intent Router Behavioral Suite', () => {
+    it('runs intent classification matrix and tool aliasing validations', async () => {
+        testEmailDetection();
+        testToolAliases();
+        testUnavailableToolError();
+        testMalformedRecovery();
+        await testFailingCaseNoGithub();
+        await runMatrix();
+    });
 });
