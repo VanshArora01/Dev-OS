@@ -2,10 +2,11 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
-import { SignInButton, SignUpButton } from "@clerk/clerk-react";
-import { ChevronDown, BarChart3, CheckCircle2, MousePointer2, Zap } from "lucide-react";
+import { useClerk } from "@clerk/clerk-react";
+import { ChevronDown, BarChart3, CheckCircle2, MousePointer2, Zap, ArrowRight, LogIn, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { setDemoMode } from "@/lib/api";
+import { useAuthUser } from "@/lib/auth";
 
 import AnoAI from "@/components/ui/animated-shader-background";
 import BentoFeatures from "@/components/landing/BentoFeatures";
@@ -38,6 +39,40 @@ function LandingContent() {
     const iconRef = useRef<HTMLDivElement>(null);
     const scrollRef = useRef<HTMLDivElement>(null);
     const mockupRef = useRef<HTMLDivElement>(null);
+
+    const { isSignedIn, isDemo } = useAuthUser();
+    let clerk: any = null;
+    try {
+        clerk = useClerk();
+    } catch {
+        // Clerk optional
+    }
+
+    const handleSignIn = () => {
+        if (clerk?.openSignIn) {
+            clerk.openSignIn({
+                forceRedirectUrl: "#/",
+                fallbackRedirectUrl: "#/",
+            });
+        } else {
+            setDemoMode(true);
+            window.location.hash = "#/";
+            window.location.reload();
+        }
+    };
+
+    const handleSignUp = () => {
+        if (clerk?.openSignUp) {
+            clerk.openSignUp({
+                forceRedirectUrl: "#/",
+                fallbackRedirectUrl: "#/",
+            });
+        } else {
+            setDemoMode(true);
+            window.location.hash = "#/";
+            window.location.reload();
+        }
+    };
 
     useGSAP(
         () => {
@@ -108,29 +143,53 @@ function LandingContent() {
                         and optimizing your deployment velocity.
                     </p>
 
-                    <div ref={ctaRef} className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <button
-                            type="button"
-                            onClick={() => {
-                                setDemoMode(true);
-                                window.location.hash = "#/";
-                                window.location.reload();
-                            }}
-                            className="group h-16 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 px-10 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:scale-105 hover:brightness-110 shadow-[0_20px_60px_rgba(16,185,129,0.4)] min-w-[220px] flex items-center justify-center gap-3"
-                        >
-                            Try Guest Demo Mode
-                            <Zap size={14} fill="currentColor" className="animate-pulse text-amber-300" />
-                        </button>
-                        <SignUpButton mode="modal">
-                            <button type="button" className="group h-16 rounded-2xl bg-indigo-600 px-8 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:scale-105 hover:bg-indigo-500 shadow-[0_20px_60px_rgba(79,70,229,0.4)] min-w-[180px] flex items-center justify-center gap-2">
-                                Sign Up
+                    <div ref={ctaRef} className="mt-10 flex flex-wrap items-center justify-center gap-4 relative z-20">
+                        {isSignedIn || isDemo ? (
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    window.location.hash = "#/";
+                                    window.location.reload();
+                                }}
+                                className="group relative h-14 rounded-2xl bg-gradient-to-r from-indigo-500 to-indigo-700 px-8 text-xs font-black uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] shadow-[0_20px_50px_rgba(79,70,229,0.4)] flex items-center justify-center gap-3 cursor-pointer min-w-[200px]"
+                            >
+                                Launch Dashboard
+                                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                             </button>
-                        </SignUpButton>
-                        <SignInButton mode="modal">
-                            <button type="button" className="group h-16 rounded-2xl border border-white/10 bg-white/[0.02] px-8 text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl transition-all hover:bg-white/[0.05] hover:border-white/20 shadow-2xl min-w-[160px]">
-                                Log In
-                            </button>
-                        </SignInButton>
+                        ) : (
+                            <>
+                                <button
+                                    type="button"
+                                    onClick={handleSignIn}
+                                    className="group relative h-14 rounded-2xl bg-indigo-600 px-8 text-xs font-black uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-indigo-500 hover:scale-[1.03] active:scale-[0.98] shadow-[0_20px_50px_rgba(79,70,229,0.4)] flex items-center justify-center gap-2.5 cursor-pointer min-w-[160px]"
+                                >
+                                    <LogIn size={15} />
+                                    Log In
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={handleSignUp}
+                                    className="group relative h-14 rounded-2xl border border-white/15 bg-white/[0.04] px-8 text-xs font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:scale-[1.03] active:scale-[0.98] shadow-xl flex items-center justify-center gap-2.5 cursor-pointer min-w-[160px]"
+                                >
+                                    <Sparkles size={15} className="text-indigo-400" />
+                                    Sign Up
+                                </button>
+
+                                <button
+                                    type="button"
+                                    onClick={() => {
+                                        setDemoMode(true);
+                                        window.location.hash = "#/";
+                                        window.location.reload();
+                                    }}
+                                    className="group relative h-14 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-8 text-xs font-black uppercase tracking-[0.2em] text-emerald-300 backdrop-blur-xl transition-all duration-300 hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:scale-[1.03] active:scale-[0.98] shadow-[0_15px_30px_rgba(16,185,129,0.15)] flex items-center justify-center gap-2.5 cursor-pointer min-w-[200px]"
+                                >
+                                    <Zap size={15} className="text-emerald-400" fill="currentColor" />
+                                    Try Guest Demo
+                                </button>
+                            </>
+                        )}
                     </div>
                 </div>
 

@@ -73,6 +73,12 @@ function ElectronAuthButtons() {
 
 export default function AuthPage() {
   const isDesktop = isElectronApp();
+  let clerk: any = null;
+  try {
+    clerk = useClerk();
+  } catch {
+    // Clerk optional
+  }
 
   return (
     <div className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black text-white font-sans">
@@ -105,18 +111,30 @@ export default function AuthPage() {
           </ClerkLoaded>
         ) : (
           <div className="flex flex-col gap-4">
-            <SignInButton mode="modal">
-              <button className="h-16 w-full rounded-2xl bg-indigo-600 px-10 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:scale-[1.02] hover:bg-indigo-500 shadow-[0_20px_60px_rgba(79,70,229,0.3)] flex items-center justify-center gap-3">
-                Log In
-                <Zap size={14} fill="currentColor" />
-              </button>
-            </SignInButton>
+            <button
+              type="button"
+              onClick={() => {
+                if (clerk?.openSignIn) {
+                  clerk.openSignIn({ forceRedirectUrl: "#/", fallbackRedirectUrl: "#/" });
+                }
+              }}
+              className="h-16 w-full rounded-2xl bg-indigo-600 px-10 text-[11px] font-black uppercase tracking-[0.2em] text-white transition-all hover:scale-[1.02] hover:bg-indigo-500 shadow-[0_20px_60px_rgba(79,70,229,0.3)] flex items-center justify-center gap-3 cursor-pointer"
+            >
+              Log In
+              <Zap size={14} fill="currentColor" />
+            </button>
 
-            <SignUpButton mode="modal">
-              <button className="h-16 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-10 text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl transition-all hover:bg-white/[0.05] hover:border-white/20">
-                Sign Up
-              </button>
-            </SignUpButton>
+            <button
+              type="button"
+              onClick={() => {
+                if (clerk?.openSignUp) {
+                  clerk.openSignUp({ forceRedirectUrl: "#/", fallbackRedirectUrl: "#/" });
+                }
+              }}
+              className="h-16 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-10 text-[11px] font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl transition-all hover:bg-white/[0.05] hover:border-white/20 cursor-pointer"
+            >
+              Sign Up
+            </button>
           </div>
         )}
 

@@ -42,6 +42,38 @@ function AuthInterceptor({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function AuthenticatedApp() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.pathname === "/landing" || location.hash.includes("landing")) {
+      navigate("/", { replace: true });
+    }
+  }, [location, navigate]);
+
+  return (
+    <AuthInterceptor>
+      <OnboardingProvider>
+        <Routes>
+          <Route path="/landing" element={<LandingPage />} />
+          <Route element={<DashboardLayout />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/project/:id" element={<ProjectDetails />} />
+            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/quick-links" element={<QuickLinks />} />
+            <Route path="/api-tester" element={<ApiTester />} />
+            <Route path="/reminders" element={<Reminders />} />
+            <Route path="/assistant" element={<Assistant />} />
+            <Route path="*" element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </OnboardingProvider>
+    </AuthInterceptor>
+  );
+}
+
 function MainRoutes() {
   const location = useLocation();
   const [demoState, setDemoState] = useState(isDemoMode());
@@ -52,16 +84,6 @@ function MainRoutes() {
       setDemoState(true);
     }
   }, [location]);
-
-  const isLandingRoute = location.pathname === "/landing" || location.hash.includes("landing");
-
-  if (isLandingRoute) {
-    return (
-      <Routes>
-        <Route path="*" element={<LandingPage />} />
-      </Routes>
-    );
-  }
 
   if (demoState) {
     return (
@@ -107,23 +129,7 @@ function MainRoutes() {
         </SignedOut>
 
         <SignedIn>
-          <AuthInterceptor>
-            <OnboardingProvider>
-              <Routes>
-                <Route element={<DashboardLayout />}>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/projects" element={<Projects />} />
-                  <Route path="/project/:id" element={<ProjectDetails />} />
-                  <Route path="/settings" element={<SettingsPage />} />
-                  <Route path="/quick-links" element={<QuickLinks />} />
-                  <Route path="/api-tester" element={<ApiTester />} />
-                  <Route path="/reminders" element={<Reminders />} />
-                  <Route path="/assistant" element={<Assistant />} />
-                  <Route path="*" element={<Dashboard />} />
-                </Route>
-              </Routes>
-            </OnboardingProvider>
-          </AuthInterceptor>
+          <AuthenticatedApp />
         </SignedIn>
       </ClerkLoaded>
     </>
