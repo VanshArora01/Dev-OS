@@ -108,7 +108,7 @@ function LandingContent() {
 
     return (
         <div ref={rootRef} className="relative w-full overflow-x-hidden bg-black text-white selection:bg-indigo-500/30">
-            <section className="relative h-screen w-full flex flex-col items-center pt-12 pb-0 overflow-hidden">
+            <section className="relative min-h-screen w-full flex flex-col items-center pt-12 pb-24 overflow-hidden">
                 <div className="absolute inset-0 z-0" ref={bgRef}>
                     <AnoAI />
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(79,70,229,0.15),transparent_70%)]" />
@@ -143,7 +143,7 @@ function LandingContent() {
                         and optimizing your deployment velocity.
                     </p>
 
-                    <div ref={ctaRef} className="mt-10 flex flex-wrap items-center justify-center gap-4 relative z-20">
+                    <div ref={ctaRef} className="mt-10 flex flex-wrap items-center justify-center gap-4 relative z-40">
                         {isSignedIn || isDemo ? (
                             <button
                                 type="button"
@@ -151,29 +151,35 @@ function LandingContent() {
                                     window.location.hash = "#/";
                                     window.location.reload();
                                 }}
-                                className="group relative h-14 rounded-2xl bg-gradient-to-r from-indigo-500 to-indigo-700 px-8 text-xs font-black uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] shadow-[0_20px_50px_rgba(79,70,229,0.4)] flex items-center justify-center gap-3 cursor-pointer min-w-[200px]"
+                                className="group relative z-40 h-14 rounded-2xl bg-gradient-to-r from-indigo-500 to-indigo-700 px-8 text-xs font-black uppercase tracking-[0.2em] text-white transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] shadow-[0_20px_50px_rgba(79,70,229,0.4)] flex items-center justify-center cursor-pointer min-w-[210px] select-none"
                             >
-                                Launch Dashboard
-                                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                                <span className="pointer-events-none flex items-center justify-center gap-3 w-full h-full">
+                                    Launch Dashboard
+                                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                                </span>
                             </button>
                         ) : (
                             <>
                                 <button
                                     type="button"
                                     onClick={handleSignIn}
-                                    className="group relative h-14 rounded-2xl bg-indigo-600 px-8 text-xs font-black uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-indigo-500 hover:scale-[1.03] active:scale-[0.98] shadow-[0_20px_50px_rgba(79,70,229,0.4)] flex items-center justify-center gap-2.5 cursor-pointer min-w-[160px]"
+                                    className="group relative z-40 h-14 rounded-2xl bg-indigo-600 px-8 text-xs font-black uppercase tracking-[0.2em] text-white transition-all duration-300 hover:bg-indigo-500 hover:scale-[1.03] active:scale-[0.98] shadow-[0_20px_50px_rgba(79,70,229,0.4)] flex items-center justify-center cursor-pointer min-w-[170px] select-none"
                                 >
-                                    <LogIn size={15} />
-                                    Log In
+                                    <span className="pointer-events-none flex items-center justify-center gap-2.5 w-full h-full">
+                                        <LogIn size={15} />
+                                        Log In
+                                    </span>
                                 </button>
 
                                 <button
                                     type="button"
                                     onClick={handleSignUp}
-                                    className="group relative h-14 rounded-2xl border border-white/15 bg-white/[0.04] px-8 text-xs font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:scale-[1.03] active:scale-[0.98] shadow-xl flex items-center justify-center gap-2.5 cursor-pointer min-w-[160px]"
+                                    className="group relative z-40 h-14 rounded-2xl border border-white/15 bg-white/[0.04] px-8 text-xs font-black uppercase tracking-[0.2em] text-white backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:scale-[1.03] active:scale-[0.98] shadow-xl flex items-center justify-center cursor-pointer min-w-[170px] select-none"
                                 >
-                                    <Sparkles size={15} className="text-indigo-400" />
-                                    Sign Up
+                                    <span className="pointer-events-none flex items-center justify-center gap-2.5 w-full h-full">
+                                        <Sparkles size={15} className="text-indigo-400" />
+                                        Sign Up
+                                    </span>
                                 </button>
 
                                 <button
@@ -183,10 +189,12 @@ function LandingContent() {
                                         window.location.hash = "#/";
                                         window.location.reload();
                                     }}
-                                    className="group relative h-14 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-8 text-xs font-black uppercase tracking-[0.2em] text-emerald-300 backdrop-blur-xl transition-all duration-300 hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:scale-[1.03] active:scale-[0.98] shadow-[0_15px_30px_rgba(16,185,129,0.15)] flex items-center justify-center gap-2.5 cursor-pointer min-w-[200px]"
+                                    className="group relative z-40 h-14 rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-8 text-xs font-black uppercase tracking-[0.2em] text-emerald-300 backdrop-blur-xl transition-all duration-300 hover:bg-emerald-500/20 hover:border-emerald-500/50 hover:scale-[1.03] active:scale-[0.98] shadow-[0_15px_30px_rgba(16,185,129,0.15)] flex items-center justify-center cursor-pointer min-w-[210px] select-none"
                                 >
-                                    <Zap size={15} className="text-emerald-400" fill="currentColor" />
-                                    Try Guest Demo
+                                    <span className="pointer-events-none flex items-center justify-center gap-2.5 w-full h-full">
+                                        <Zap size={15} className="text-emerald-400" fill="currentColor" />
+                                        Try Guest Demo
+                                    </span>
                                 </button>
                             </>
                         )}
