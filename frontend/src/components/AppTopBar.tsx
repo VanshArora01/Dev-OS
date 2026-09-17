@@ -1,9 +1,11 @@
 import { useLocation } from "react-router-dom";
-import { useUser, UserButton } from "@clerk/clerk-react";
-import { Search } from "lucide-react";
+import { useUser, UserButton, useClerk } from "@clerk/clerk-react";
+import { Search, LogOut } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
 import { NotificationBell } from "@/components/NotificationBell";
 import { openCommandPalette } from "@/lib/motion";
+import { useAuthUser } from "@/lib/auth";
+import { setDemoMode } from "@/lib/api";
 
 function isMacPlatform() {
   if (typeof navigator === "undefined") return false;
@@ -12,8 +14,26 @@ function isMacPlatform() {
 
 export function AppTopBar() {
   const location = useLocation();
-  const { user } = useUser();
+  const { user, isDemo } = useAuthUser();
   const shortcut = isMacPlatform() ? "⌘K" : "Ctrl+K";
+
+  let clerk: any = null;
+  try {
+    clerk = useClerk();
+  } catch {
+    // Clerk optional
+  }
+
+  const handleLogout = () => {
+    setDemoMode(false);
+    if (clerk?.signOut) {
+      try {
+        clerk.signOut();
+      } catch {}
+    }
+    window.location.hash = "#/landing";
+    window.location.reload();
+  };
 
   const contextLabel = location.pathname.startsWith("/projects")
     ? "Projects"
@@ -44,18 +64,32 @@ export function AppTopBar() {
       </button>
 
       <div className="flex items-center gap-2">
+        {isDemo && (
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-semibold hover:bg-amber-500/20 transition-colors flex items-center gap-1.5"
+            title="Click to exit demo mode and return to landing page"
+          >
+            <LogOut size={13} />
+            Exit Demo
+          </button>
+        )}
         <ThemeToggle />
         <NotificationBell />
         <div className="hidden sm:flex items-center gap-2.5 pl-2 ml-1 border-l border-slate-200 dark:border-white/[0.08]">
           <UserButton appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
           <div className="min-w-0 hidden md:block">
             <p className="text-sm font-semibold text-slate-800 dark:text-white leading-tight truncate">
-              {user?.firstName || "You"}
+              {user?.firstName || (isDemo ? "Guest User" : "You")}
             </p>
-            <p className="text-[11px] text-slate-400 leading-tight">Workspace</p>
+            <p className="text-[11px] text-slate-400 leading-tight">
+              {isDemo ? "Demo Mode" : "Workspace"}
+            </p>
           </div>
         </div>
       </div>
     </header>
   );
 }
+

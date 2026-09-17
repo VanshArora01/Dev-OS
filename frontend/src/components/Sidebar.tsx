@@ -11,8 +11,9 @@ import {
   ChevronDown,
   Check,
   Sparkles,
+  LogOut,
 } from "lucide-react";
-import { useUser, UserButton } from "@clerk/clerk-react";
+import { useUser, UserButton, useClerk } from "@clerk/clerk-react";
 import { useAuthUser } from "@/lib/auth";
 import { isDemoMode, setDemoMode } from "@/lib/api";
 import { motion, AnimatePresence } from "framer-motion";
@@ -47,6 +48,24 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const { user, isDemo } = useAuthUser();
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem(COLLAPSE_KEY) === "1");
+
+  let clerk: any = null;
+  try {
+    clerk = useClerk();
+  } catch {
+    // Clerk not mounted or in demo mode
+  }
+
+  const handleLogout = () => {
+    setDemoMode(false);
+    if (clerk?.signOut) {
+      try {
+        clerk.signOut();
+      } catch {}
+    }
+    window.location.hash = "#/landing";
+    window.location.reload();
+  };
 
   useEffect(() => {
     localStorage.setItem(COLLAPSE_KEY, collapsed ? "1" : "0");
@@ -221,18 +240,18 @@ export default function Sidebar() {
             >
               <UserButton appearance={{ elements: { avatarBox: "w-9 h-9" } }} />
               {!collapsed && (
-                <div className="min-w-0 text-left">
+                <div className="min-w-0 text-left flex-1">
                   <p className="text-sm font-semibold text-slate-800 dark:text-white truncate">
-                    {user?.fullName || user?.firstName || "Account"}
+                    {user?.fullName || user?.firstName || (isDemo ? "Guest Demo User" : "Account")}
                   </p>
                   <p className="text-[11px] text-slate-400 truncate">
-                    {user?.primaryEmailAddress?.emailAddress || "Workspace"}
+                    {user?.primaryEmailAddress?.emailAddress || (isDemo ? "demo@devos.local" : "Workspace")}
                   </p>
                 </div>
               )}
             </button>
           </PopoverTrigger>
-          <PopoverContent side="top" align="start" className="w-56 rounded-2xl p-2">
+          <PopoverContent side="top" align="start" className="w-56 rounded-2xl p-2 space-y-1">
             <button
               type="button"
               onClick={() => navigate("/settings")}
@@ -247,9 +266,19 @@ export default function Sidebar() {
             >
               My projects
             </button>
+            <div className="my-1 border-t border-slate-200 dark:border-white/[0.08]" />
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="w-full text-left rounded-xl px-3 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-500/10 font-medium flex items-center gap-2"
+            >
+              <LogOut size={14} />
+              {isDemo ? "Exit Demo Mode" : "Log out"}
+            </button>
           </PopoverContent>
         </Popover>
       </div>
     </motion.aside>
   );
 }
+

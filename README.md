@@ -14,31 +14,18 @@
 
 <br/>
 
-### 🌐 [Try Guest Demo Mode (Live Web App)](https://dev-os-demo.vercel.app)
+### 🌐 [Try Guest Demo Mode (Live Web App)](https://dev-os-1.onrender.com)
 
 Try the full interactive interface in zero-config Guest Demo Mode (no login or backend setup required).
 
 | Option | Download / Access Link | Platform | Details |
 | :--- | :--- | :--- | :--- |
-| **Live Web App** | [**Launch DevOS Web**](https://dev-os-demo.vercel.app) | Any Browser | Zero-config Guest Demo Mode with realistic mock SaaS projects & AI |
+| **Live Web App** | [**Launch DevOS Web**](https://dev-os-1.onrender.com) | Any Browser | Zero-config Guest Demo Mode with realistic mock SaaS projects & AI |
 | **Windows Installer** | [**Download Setup 1.0.0.exe**](https://github.com/VanshArora01/Dev-OS/raw/main/downloads/DevOS%20Setup%201.0.0.exe) | Windows (x64) | Full desktop app with Start Menu shortcuts & background session logging |
 | **Portable Binary** | [**Download DevOS 1.0.0.exe**](https://github.com/VanshArora01/Dev-OS/raw/main/downloads/DevOS%201.0.0.exe) | Windows (x64) | Standalone single-file executable |
 | **Demo Video** | [**Watch DevOS Demo.mp4**](https://github.com/VanshArora01/Dev-OS/raw/main/DevOS%20Demo.mp4) | Video (MP4) | Walkthrough of live Google Drive, GitHub, and Gmail OAuth integrations |
 
 </div>
-
----
-
-## 📸 Product Screenshots
-
-### 1. Developer Dashboard & Project Command Center
-![Developer Dashboard](docs/screenshots/dashboard.jpg)
-
-### 2. Automated PRD Ingestion & Task Extraction
-![PRD Ingestion Engine](docs/screenshots/prd_ingestion.jpg)
-
-### 3. Neural AI Assistant & Context RAG Engine
-![Neural AI Assistant](docs/screenshots/ai_assistant.jpg)
 
 ---
 
@@ -112,8 +99,6 @@ Dev-OS-1/
 ├── electron/               # Electron desktop wrapper & build system
 │   ├── main.js             # Electron main process & IPC handlers
 │   └── package.json        # Packaging configuration (NSIS & Portable target)
-├── docs/
-│   └── screenshots/        # Product interface screenshots
 ├── CHANGELOG.md            # Release notes and version history
 ├── CONTRIBUTING.md         # Developer setup and contribution guide
 └── TESTING.md              # Test execution instructions and coverage details

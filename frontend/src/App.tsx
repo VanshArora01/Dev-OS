@@ -53,10 +53,21 @@ function MainRoutes() {
     }
   }, [location]);
 
-  if (demoState || !HAS_CLERK) {
+  const isLandingRoute = location.pathname === "/landing" || location.hash.includes("landing");
+
+  if (isLandingRoute) {
+    return (
+      <Routes>
+        <Route path="*" element={<LandingPage />} />
+      </Routes>
+    );
+  }
+
+  if (demoState) {
     return (
       <OnboardingProvider>
         <Routes>
+          <Route path="/landing" element={<LandingPage />} />
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Dashboard />} />
             <Route path="/projects" element={<Projects />} />
@@ -70,6 +81,14 @@ function MainRoutes() {
           </Route>
         </Routes>
       </OnboardingProvider>
+    );
+  }
+
+  if (!HAS_CLERK) {
+    return (
+      <Routes>
+        <Route path="*" element={<LandingPage />} />
+      </Routes>
     );
   }
 
